@@ -10,7 +10,14 @@
                 <div class="panel-body">
                     <ul>
                         @foreach ($students as $student)
-                            <li>{{$student->Surname}} {{$student->Name}}</li>
+                            <li>
+                                {{$student->Surname}} {{$student->Name}}
+                                <ul>
+                                    @foreach ($student->grades as $grade)
+                                        <li>{{ $grade->Grade }}</li>
+                                    @endforeach
+                                </ul>
+                            </li>
                         @endforeach
                     </ul>
                 </div>

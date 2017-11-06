@@ -10,6 +10,6 @@ class Student extends Model
 
     public function grades()
     {
-        $this->hasOne('App\Grade');
+        return $this->hasMany('App\Grade', 'RecordBookId', 'RecordBookId');
     }
 }
