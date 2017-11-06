@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="student">Student</a>
+                    <a href="student">Student v</a>
                 </div>
             </div>
         </div>
