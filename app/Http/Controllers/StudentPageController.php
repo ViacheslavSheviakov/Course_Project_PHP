@@ -2,18 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Student;
 use Illuminate\Http\Request;
 use App\Subject;
 
 class StudentPageController extends Controller
 {
     public function index() {
-        $subjects = Subject::all();
-        $toReturn = false;
+        $students = Student::all();
 
-        foreach ($subjects as $subject) {
-            $toReturn = $subject->SubjectShortTitle;
-        }
-        return view('student.page')->with('subject', $toReturn);
+        return view('student.page')->with('students', $students);
     }
 }

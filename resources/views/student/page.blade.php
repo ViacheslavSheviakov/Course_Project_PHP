@@ -1,15 +1,21 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Student Page</title>
-</head>
-<body>
-    <h1>{{ $subject }}</h1>
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Students</div>
 
+                <div class="panel-body">
+                    <ul>
+                        @foreach ($students as $student)
+                            <li>{{$student->Surname}} {{$student->Name}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
 
-</body>
-</html>
