@@ -20,3 +20,5 @@ Route::get('student', 'StudentPageController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('subject', 'SubjectController@index');
