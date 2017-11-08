@@ -9,7 +9,6 @@
                     <div class="panel-body">
 
                         <h3>Предметы</h3>
-                        <a class="btn btn-default" href="/subject" role="button">Добавить</a>
                         <table class="table table-striped">
                             <thead>
                             <tr>
@@ -21,34 +20,25 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($subjects as $subject)
+                            <form   method="post" action="{{ URL::to('its/its_customs_office/create') }}" autocomplete="off">
                                 <tr>
-                                    <td>{{ $subject->SubjectShortTitle }}</td>
-                                    <td>{{ $subject->SubjectFullTitle }}</td>
-                                    <td>{{ $subject->Credits }}</td>
-                                    <td>{{'Преподаватель' }}</td>
+                                    @foreach($subjects as $subject)
+                                        <td><input class="input-sm" name="SubjectShortTitle" value="{{ $subject->SubjectShortTitle }}"></td>
+                                        <td><input class="input-sm" name="SubjectFullTitle" value="{{ $subject->SubjectFullTitle }}"></td>
+                                        <td><input class="input-sm" name="Credits" value="{{ $subject->Credits }}"></td>
+                                        <td><input class="input-sm" name="Credits" value="{{ "Преподаватель" }}"></td>
                                     <td><a class="btn btn-default" href="{{route('subjectEdit',['id'=>$subject->SubjectShortTitle])}}" role="button">Изменить</a></td>
                                     <td><a class="btn btn-default" href="{{route('subjectDel',['del'=>$subject->SubjectShortTitle])}}" role="button">Удалить</a></td>
-
+                                @endforeach
+                            </form>
                                 </tr>
-                            @endforeach
                             </tbody>
                         </table>
                         <br>
                     </div>
                 </div>
+                <a  class="button btn-default" href="{{route('subject')}}" role="button"> Список предметов</a>
             </div>
         </div>
     </div>
 @endsection
-
-{{--<h1>Subjects</h1>--}}
-{{--{{$mess}}--}}
-
-{{--@foreach($subjects as $subject)--}}
-    {{--<p>{{$subject->SubjectShortTitle}}</p>--}}
-    {{--<p>{{$subject->SubjectFullTitle}}</p>--}}
-    {{--<p>{{$subject->Credits}}</p>--}}
-{{--<hr>--}}
-
-{{--@endforeach--}}
