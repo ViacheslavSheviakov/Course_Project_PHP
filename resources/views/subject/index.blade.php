@@ -9,7 +9,7 @@
                     <div class="panel-body">
 
                         <h3>Предметы</h3>
-                        <a class="btn btn-default" href="/subject" role="button">Добавить</a>
+                        <a class="btn btn-default" href="{{route('subjectAdd')}}" role="button">Добавить</a>
                         <table class="table table-striped">
                             <thead>
                             <tr>
