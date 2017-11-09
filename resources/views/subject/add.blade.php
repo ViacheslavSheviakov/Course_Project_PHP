@@ -8,7 +8,7 @@
 
                     <div class="panel-body">
 
-                        <h3>Предметы</h3>
+                        <h3>Добавление предмета</h3>
                         {{ Form::open(array('route' => 'subjectAdded')) }}
                         <table class="table table-striped">
                             <thead>

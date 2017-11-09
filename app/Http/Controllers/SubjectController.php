@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Professor;
 use App\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -38,7 +37,7 @@ class SubjectController extends Controller
                 ['SubjectShortTitle' => $SubjectShortTitle, 'SubjectFullTitle' => $SubjectFullTitle, 'Credits' => $Credits]
             );
         } else {
-            return view('subject.add')->with('mess', $message = "Не верный ввод");
+            return redirect()->route('subjectAdd');
         }
         $subjects = Subject::all();
         return view('subject.index')->with(['mess' => $message,
@@ -53,7 +52,7 @@ class SubjectController extends Controller
 //
 //
 //
-//
+///////////second version///////////
 //        if($id!=null&&$id!="")
 //        {
 //            DB::table('subjects')->where('SubjectShortTitle', '=', $id)->delete();
@@ -66,6 +65,7 @@ class SubjectController extends Controller
 //            'mess' => $message
 //            , 'subjects' => $subjects
 //        ]);
+        ///////////second version///////////
     }
 
 }

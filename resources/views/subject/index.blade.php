@@ -26,9 +26,11 @@
                                     <td>{{ $subject->SubjectFullTitle }}</td>
                                     <td>{{ $subject->Credits }}</td>
                                     <td>
+                                         {{--===================second version button delete===========--}}
                                         {{--<a class="btn btn-default"--}}
                                            {{--href="{{route('subjectDel',['del'=>$subject->SubjectShortTitle])}}"--}}
                                            {{--role="button">Удалить</a>--}}
+                                        {{--===================second version button delete===========--}}
                                         {!! Form::open(['method' => 'DELETE', 'route' => ['subjectDel', $subject->SubjectShortTitle],]) !!}
                                         {!! Form::submit('Удалить', ['class' => 'btn btn-danger','data-toggle'=>'confirmation', 'data-title'=>'Delete','data-content'=>'Delete user' ]) !!}
                                         {!! Form::close() !!}
