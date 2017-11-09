@@ -23,5 +23,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('subject', 'SubjectController@index')->name('subject');
 Route::get('subject/add', 'SubjectController@add')->name('subjectAdd');
-Route::get('subject/edit{id}', 'SubjectController@edit')->name('subjectEdit');
-Route::get('subject/del{id}', 'SubjectController@del')->name('subjectDel');
+Route::post('subject', 'SubjectController@added')->name('subjectAdded');
+Route::delete('subject/del{id}', 'SubjectController@del')->name('subjectDel');

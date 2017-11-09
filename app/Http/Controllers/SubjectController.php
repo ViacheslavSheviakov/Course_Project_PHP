@@ -6,6 +6,7 @@ use App\Professor;
 use App\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 class SubjectController extends Controller
 {
 
@@ -14,38 +15,57 @@ class SubjectController extends Controller
         $subjects = Subject::all();
         $message = "test message";
         //dump($subjects);
-        return view('subject.index') -> with(['mess'=>$message,
-                                                    'subjects'=> $subjects]);
-    }
-    public function add()
-    {
-        $professors=Professor::all();
-        //$message = "test message";
-        dump($professors);
-        return view('subject.add')-> with([
-            'professors'=> $professors
-        ]);
+        return view('subject.index')->with(['mess' => $message,
+            'subjects' => $subjects]);
     }
 
-    public function edit($id)
+    public function add()
     {
-        $subjects = DB::select('select * from subjects where SubjectShortTitle = :id', ['id'=> $id]);
-        //$subjects=DB::select(['SubjectShortTitle','SubjectFullTitle','Credits'])->where('SubjectShortTitle',$id)->get();
-        //$message = "test message";
-        //dump($subjects);
-        return view('subject.edit') -> with([
-            'subjects'=> $subjects
-        ]);
+        return view('subject.add');
     }
+
+    public function added(Request $request)
+    {
+        $message = "test message";
+
+        //dump($request->input('SubjectShortTitle'));
+        $SubjectShortTitle = $request->input('SubjectShortTitle');
+        $SubjectFullTitle = $request->input('SubjectFullTitle');
+        $Credits = $request->input('Credits');
+        if ($SubjectShortTitle != "" && $SubjectFullTitle != "" && $Credits != "") {
+           // DB::insert('INSERT INTO subjects (SubjectShortTitle, SubjectFullTitle, Credits) VALUES ($SubjectShortTitle, $SubjectFullTitle, $Credits)');
+            DB::table('subjects')->insert(
+                ['SubjectShortTitle' => $SubjectShortTitle, 'SubjectFullTitle' => $SubjectFullTitle, 'Credits' => $Credits]
+            );
+        } else {
+            return view('subject.add')->with('mess', $message = "Не верный ввод");
+        }
+        $subjects = Subject::all();
+        return view('subject.index')->with(['mess' => $message,
+            'subjects' => $subjects]);
+    }
+
     public function del($id)
     {
-        $subjects = DB::select('select * from subjects where SubjectShortTitle = :id', ['id'=> $id]);
-        $message = "test message";
-        dump($subjects);
-        return view('subject.edit') -> with([
-            'mess'=>$message
-            ,'subjects'=> $subjects
-        ]);
+        $subject = Subject::findOrFail($id);
+        $subject->delete();
+        return redirect()->route('subject')->with('flash_message','User successfully deleted.');
+//
+//
+//
+//
+//        if($id!=null&&$id!="")
+//        {
+//            DB::table('subjects')->where('SubjectShortTitle', '=', $id)->delete();
+//        }
+//
+//        $subjects = Subject::all();
+//        $message = "test message";
+//        dump($subjects);
+//        return view('subject.index')->with([
+//            'mess' => $message
+//            , 'subjects' => $subjects
+//        ]);
     }
 
 }

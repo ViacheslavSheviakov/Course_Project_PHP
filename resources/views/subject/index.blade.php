@@ -9,15 +9,14 @@
                     <div class="panel-body">
 
                         <h3>Предметы</h3>
-                        <a class="btn btn-default" href="{{route('subjectAdd')}}" role="button">Добавить</a>
+                        <a class="btn btn-success" href="{{route('subjectAdd')}}" role="button">Добавить</a>
                         <table class="table table-striped">
                             <thead>
                             <tr>
                                 <th>Сокращение</th>
                                 <th>Дисциплина</th>
                                 <th>Кредиты</th>
-                                <th>Преподаватель</th>
-                                <th colspan="2" class="text-center">Инструменты</th>
+                                <th>Инструменты</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -26,9 +25,14 @@
                                     <td>{{ $subject->SubjectShortTitle }}</td>
                                     <td>{{ $subject->SubjectFullTitle }}</td>
                                     <td>{{ $subject->Credits }}</td>
-                                    <td>{{'Преподаватель' }}</td>
-                                    <td><a class="btn btn-default" href="{{route('subjectEdit',['id'=>$subject->SubjectShortTitle])}}" role="button">Изменить</a></td>
-                                    <td><a class="btn btn-default" href="{{route('subjectDel',['del'=>$subject->SubjectShortTitle])}}" role="button">Удалить</a></td>
+                                    <td>
+                                        {{--<a class="btn btn-default"--}}
+                                           {{--href="{{route('subjectDel',['del'=>$subject->SubjectShortTitle])}}"--}}
+                                           {{--role="button">Удалить</a>--}}
+                                        {!! Form::open(['method' => 'DELETE', 'route' => ['subjectDel', $subject->SubjectShortTitle],]) !!}
+                                        {!! Form::submit('Удалить', ['class' => 'btn btn-danger','data-toggle'=>'confirmation', 'data-title'=>'Delete','data-content'=>'Delete user' ]) !!}
+                                        {!! Form::close() !!}
+                                    </td>
 
                                 </tr>
                             @endforeach
@@ -46,9 +50,9 @@
 {{--{{$mess}}--}}
 
 {{--@foreach($subjects as $subject)--}}
-    {{--<p>{{$subject->SubjectShortTitle}}</p>--}}
-    {{--<p>{{$subject->SubjectFullTitle}}</p>--}}
-    {{--<p>{{$subject->Credits}}</p>--}}
+{{--<p>{{$subject->SubjectShortTitle}}</p>--}}
+{{--<p>{{$subject->SubjectFullTitle}}</p>--}}
+{{--<p>{{$subject->Credits}}</p>--}}
 {{--<hr>--}}
 
 {{--@endforeach--}}
