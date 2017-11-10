@@ -28,5 +28,9 @@ Route::delete('subject/del{id}', 'SubjectController@del')->name('subjectDel');
 
 Route::get('studenteditor', 'StudentEditorController@index')->name('studentEditor');
 Route::get('studenteditor/add', 'StudentEditorController@add')->name('studentEditorAdd');
-Route::post('studenteditor', 'StudentEditorController@added')->name('studentEditorAdded');
+//Route::get('studenteditor/edit{id}', 'StudentEditorController@edit')->name('studenteditorEdit');
 Route::delete('studenteditor/del{id}', 'StudentEditorController@del')->name('studenteditorDel');
+Route::post('studenteditor', 'StudentEditorController@added')->name('studentEditorAdded');
+//Route::post('studenteditor', 'StudentEditorController@edited')->name('studentEditorEdited');
+
+Route::post('studenteditor/ajaxgroup', 'StudentEditorController@ajaxgroup'); //for ajax request

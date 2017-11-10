@@ -25,12 +25,22 @@
                             <tbody>
                             @foreach($students as $student)
                                 <tr>
-                                    <td>{{ $student->RecordBookId }}</td>
+                                    <td id="id">{{ $student->RecordBookId }}</td>
                                     <td>{{ $student->Surname }}</td>
                                     <td>{{ $student->Name }}</td>
                                     <td>{{ $student->Patronymic }}</td>
-                                    <td>{{ $student->GroupShortTitle }}</td>
+                                    <td>
+                                        <select id="chgroup" name="groupshorttitle" class="form-control">
+                                            @foreach($groups as $group)
+                                                <option value="{{$group->GroupShortTitle}}" @if($group->GroupShortTitle===$student->GroupShortTitle) selected @endif>{{$group->GroupShortTitle}}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
                                     <td>{{ $student->EnteringDate }}</td>
+                                    {{--<td>{!! Form::open(['method' => 'GET', 'route' => ['studenteditorEdit', $student->RecordBookId],]) !!}--}}
+                                        {{--{!! Form::submit('Изменить', ['class' => 'btn btn-primary','data-toggle'=>'confirmation', 'data-title'=>'Edit','data-content'=>'Edit student' ]) !!}--}}
+                                        {{--{!! Form::close() !!}--}}
+                                    {{--</td>--}}
                                     <td>
                                         {!! Form::open(['method' => 'DELETE', 'route' => ['studenteditorDel', $student->RecordBookId],]) !!}
                                         {!! Form::submit('Удалить', ['class' => 'btn btn-danger','data-toggle'=>'confirmation', 'data-title'=>'Delete','data-content'=>'Delete student' ]) !!}
@@ -46,15 +56,6 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('js/script.js')}}"></script>
 @endsection
-
-{{--<h1>Subjects</h1>--}}
-{{--{{$mess}}--}}
-
-{{--@foreach($subjects as $subject)--}}
-{{--<p>{{$subject->SubjectShortTitle}}</p>--}}
-{{--<p>{{$subject->SubjectFullTitle}}</p>--}}
-{{--<p>{{$subject->Credits}}</p>--}}
-{{--<hr>--}}
-
-{{--@endforeach--}}
