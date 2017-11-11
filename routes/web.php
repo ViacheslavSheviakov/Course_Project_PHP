@@ -16,3 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('student', 'StudentPageController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
