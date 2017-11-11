@@ -85,6 +85,12 @@
                 <div class="links">
                     <a href="student">Student</a>
                 </div>
+                <div class="links">
+                    <a href="studenteditor">Student List Editor</a>
+                </div>
+                <div class="links">
+                    <a href="subject">Subject List Editor</a>
+                </div>
             </div>
         </div>
     </body>
