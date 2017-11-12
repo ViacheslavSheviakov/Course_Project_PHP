@@ -9,4 +9,12 @@ class Group extends Model
     public $primaryKey = 'GroupShortTitle';
     public $incrementing = false;
     public $timestamps = false;
+
+    public function schedules()
+    {
+        return $this
+            ->hasMany('App\Schedule', 'GroupShortTitle', 'GroupShortTitle')
+            ->orderBy('LessonDate')
+            ->orderBy('LessonNumber');
+    }
 }

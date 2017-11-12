@@ -8,8 +8,8 @@
                 <div class="panel-heading">Студент</div>
 
                 <div class="panel-body">
-                    <h2>{{ $data[0]->Surname }} {{ $data[0]->Name }}</h2>
-                    <h4>{{ $data[0]->GroupShortTitle }}</h4>
+                    <h2>{{ $student->Surname }} {{ $student->Name }}</h2>
+                    <h4>{{ $student->GroupShortTitle }}</h4>
                     <hr>
                     <h3>Рассписание</h3>
                     <table class="table table-striped">
@@ -22,12 +22,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($data[1] as $element)
+                            @foreach($student->group->schedules as $lesson)
                                 <tr>
-                                    <td>{{ $element->LessonDate }}</td>
-                                    <td>{{ $element->LessonNumber }}</td>
-                                    <td>{{ $element->SubjectShortTitle }}</td>
-                                    <td>{{ $element->LessonType }}</td>
+                                    <td>{{ $lesson->LessonDate }}</td>
+                                    <td>{{ $lesson->LessonNumber }}</td>
+                                    <td>{{ $lesson->teaching->SubjectShortTitle }}</td>
+                                    <td>{{ $lesson->LessonType }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -44,16 +44,24 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($data[2] as $element)
+                        @foreach($student->grades as $grade)
                             <tr>
-                                <td>{{ $element->LessonDate }}</td>
-                                <td>{{ $element->SubjectShortTitle }}</td>
-                                <td>{{ $element->Surname }} {{ $element->Name }} {{ $element->Patronymic }}</td>
-                                <td>{{ $element->Grade }}</td>
+                                <td>{{ $grade->schedule->LessonDate }}</td>
+                                <td>{{ $grade->schedule->teaching->SubjectShortTitle }}</td>
+                                <td>
+                                    {{ $grade->schedule->teaching->professor->Surname }}
+                                    {{ $grade->schedule->teaching->professor->Name }}
+                                    {{ $grade->schedule->teaching->professor->Patronymic }}
+                                </td>
+                                <td>{{ $grade->Grade }}</td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
+                    <hr>
+                    <h3>Скачать отчёт</h3>
+                    <br>
+                    <button class="btn btn-primary">Microsoft Word</button>
                 </div>
             </div>
         </div>
