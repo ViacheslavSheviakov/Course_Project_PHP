@@ -4,17 +4,9 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Klaravel\Ntrust\Traits\NtrustUserTrait;
 
 class User extends Authenticatable
 {
-    use NtrustUserTrait; // add this trait to your user model
-
-    /*
-     * Role profile to get value from ntrust config file.
-     */
-    protected static $roleProfile = 'user';
-
     use Notifiable;
 
     /**
@@ -34,9 +26,4 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = bcrypt($password);
-    }
 }
