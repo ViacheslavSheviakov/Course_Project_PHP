@@ -12,7 +12,7 @@ namespace App\Http\Controllers;
 use App\Group;
 use App\Student;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+//use Illuminate\Support\Facades\DB;
 
 class GroupsEditorController extends Controller
 {
@@ -25,8 +25,8 @@ class GroupsEditorController extends Controller
     public function group($id)
     {
         $groups = Group::all();
-        $students = DB::table('students')
-            ->where('GroupShortTitle', $id)
+        $students = Student::
+            where('GroupShortTitle', $id)
             ->get();
         return view('groups.group')->with(['students'=> $students, 'groups'=>$groups]);
     }
