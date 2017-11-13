@@ -8,30 +8,26 @@
                 <div class="panel-heading">Студент</div>
 
                 <div class="panel-body">
-                    <h2>{{ $student->Surname }} {{ $student->Name }}</h2>
-                    <h4>{{ $student->GroupShortTitle }}</h4>
+                    <h2>{{ $data[0]->Surname }} {{ $data[0]->Name }}</h2>
+                    <h4>{{ $data[0]->GroupShortTitle }}</h4>
                     <hr>
                     <h3>Рассписание</h3>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Дата</th>
-                                <th>Номер Пары</th>
-                                <th>Дисциплина</th>
-                                <th>Тип занятия</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($student->group->schedules as $lesson)
-                                <tr>
-                                    <td>{{ $lesson->LessonDate }}</td>
-                                    <td>{{ $lesson->LessonNumber }}</td>
-                                    <td>{{ $lesson->teaching->SubjectShortTitle }}</td>
-                                    <td>{{ $lesson->LessonType }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                    <div class="schedule">
+                        @foreach($data[1] as $date => $lessons)
+                            <div class="day">
+                                <h3>{{ $date }}</h3>
+                                @for($i = 0; $i < 8; $i++)
+                                    <div class="lesson">
+                                        @if(isset($lessons[$i]))
+                                        <span class="lesson-type">{{ $lessons[$i][0] }}</span>
+                                        <span class="subject-title">{{ $lessons[$i][1] }}</span>
+                                        @endif
+                                    </div>
+                                @endfor
+                            </div>
+                        @endforeach
+                    </div>
+
                     <br>
                     <h3>Оценки</h3>
                     <table class="table table-striped">
@@ -44,7 +40,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($student->grades as $grade)
+                        @foreach($data[0]->grades as $grade)
                             <tr>
                                 <td>{{ $grade->schedule->LessonDate }}</td>
                                 <td>{{ $grade->schedule->teaching->SubjectShortTitle }}</td>

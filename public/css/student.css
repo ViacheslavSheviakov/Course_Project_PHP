@@ -1,0 +1,53 @@
+.schedule
+{
+    width: 100%;
+    padding: 10px;
+}
+
+.day
+{
+    display: inline-block;
+    width: 100px;
+    background-color: #5194ff;
+    border-radius: 5px;
+    text-align: center;
+    margin: 5px;
+    vertical-align: middle;
+}
+
+.day h3
+{
+    display: block;
+    background-color: #0d55c6;
+    font-size: 18px;
+    border-radius: 5px 5px 0 0;
+    margin: 0;
+    padding: 10px 0;
+    color: #8ebaff;
+    font-weight: bold;
+}
+
+.lesson
+{
+    border-bottom: 1px #002d75 solid;
+    padding: 5px 0;
+    height: 50px;
+}
+
+.lesson:last-child
+{
+    border-bottom: none;
+}
+
+.subject-title,
+.lesson-type
+{
+    display: block;
+    font-style: italic;
+    color: #072047;
+}
+
+.subject-title
+{
+    font-weight: bold;
+}
