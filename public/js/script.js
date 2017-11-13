@@ -23,5 +23,6 @@ $(document).on('change', '#chgroup', function (e) {
         }
     })
         .done(function( msg ) {
-       alert( msg )});
+       // alert( msg )
+        });
 });

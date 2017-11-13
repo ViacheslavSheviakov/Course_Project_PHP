@@ -6,7 +6,6 @@ use App\Student;
 use App\Group;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 
 class StudentEditorController extends Controller
 {
@@ -28,25 +27,25 @@ class StudentEditorController extends Controller
     public function added(Request $request)
     {
         $groups = Group::all();
-        //dump($request->input('SubjectShortTitle'));
-        $surname = $request->input('Surname');
-        $name = $request->input('Name');
-        $patronymic = $request->input('Patronymic');
-        $groupShortTitle = $request->input('GroupShortTitle');
         $timeNow = Carbon::now('Asia/Dhaka')->toDateString();
-
-        if ($surname != "" && $name != "" && $patronymic != "" && $groupShortTitle != "") {
-            DB::table('students')->insert
-            (
-                ['Surname' => $surname, 'Name' => $name, 'Patronymic' => $patronymic, 'GroupShortTitle' => $groupShortTitle, 'EnteringDate' => $timeNow,]
-            );
+        if ($request->Surname != "" && $request->Name != "" && $request->Patronymic != "" && $request->GroupShortTitle != "") {
+            $student = new Student();
+            $student->Surname = $request->Surname;
+            $student->Name = $request->Name;
+            $student->Patronymic = $request->Patronymic;
+            $student->GroupShortTitle = $request->GroupShortTitle;
+            $student->EnteringDate = $timeNow;
+            $student->save();
+//            DB::table('students')->insert
+//            (
+//                ['Surname' => $surname, 'Name' => $name, 'Patronymic' => $patronymic, 'GroupShortTitle' => $groupShortTitle, 'EnteringDate' => $timeNow,]
+//            );
+            dump($request);
         } else {
-
             return redirect()->route('studentEditorAdd');
-
         }
         $students = Student::all();
-        //dump($request);
+
         return view('studenteditor.index')->with([
             'students'=> $students,'groups'=>$groups]);
     }

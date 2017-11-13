@@ -25,23 +25,21 @@ class SubjectController extends Controller
 
     public function added(Request $request)
     {
-        $message = "test message";
-
-        //dump($request->input('SubjectShortTitle'));
-        $SubjectShortTitle = $request->input('SubjectShortTitle');
-        $SubjectFullTitle = $request->input('SubjectFullTitle');
-        $Credits = $request->input('Credits');
-        if ($SubjectShortTitle != "" && $SubjectFullTitle != "" && $Credits != "") {
-           // DB::insert('INSERT INTO subjects (SubjectShortTitle, SubjectFullTitle, Credits) VALUES ($SubjectShortTitle, $SubjectFullTitle, $Credits)');
-            DB::table('subjects')->insert(
-                ['SubjectShortTitle' => $SubjectShortTitle, 'SubjectFullTitle' => $SubjectFullTitle, 'Credits' => $Credits]
-            );
+        if ($request->SubjectShortTitle != "" && $request->SubjectFullTitle != "" && $request->Credits != "") {
+            $subject = new  Subject();
+            $subject->SubjectShortTitle=$request->SubjectShortTitle;
+            $subject->SubjectFullTitle=$request->SubjectFullTitle;
+            $subject->Credits=$request->Credits;
+            $subject->save();
+//            DB::table('subjects')->insert(
+//                ['SubjectShortTitle' => $SubjectShortTitle, 'SubjectFullTitle' => $SubjectFullTitle, 'Credits' => $Credits]
+//            );
         } else {
             return redirect()->route('subjectAdd');
         }
         $subjects = Subject::all();
-        return view('subject.index')->with(['mess' => $message,
-            'subjects' => $subjects]);
+        return view('subject.index')->with(
+            'subjects', $subjects);
     }
 
     public function del($id)

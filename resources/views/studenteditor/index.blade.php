@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-md-offset-0">
-                <div class="panel panel-default">
+                <div class="panel panel-default panel-modest">
 
                     <div class="panel-body">
 
@@ -29,7 +29,7 @@
                                     <td>{{ $student->Surname }}</td>
                                     <td>{{ $student->Name }}</td>
                                     <td>{{ $student->Patronymic }}</td>
-                                    <td>
+                                    <td >
                                         <select id="chgroup" name="groupshorttitle" class="form-control">
                                             @foreach($groups as $group)
                                                 <option value="{{$group->GroupShortTitle}}" @if($group->GroupShortTitle===$student->GroupShortTitle) selected @endif>{{$group->GroupShortTitle}}</option>

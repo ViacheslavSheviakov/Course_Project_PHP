@@ -12,9 +12,9 @@ class GroupsTableSeeder extends Seeder
     public function run()
     {
         DB::table('groups')->insert([
-            'GroupShortTitle' => 'SSE-16-2',
-            'GroupFullTitle' => 'Software Software Engineering',
-            'CuratorId' => '1',
-        ]);
+        'GroupShortTitle' => 'SSE-16-2',
+        'GroupFullTitle' => 'Software Software Engineering',
+        'CuratorId' => '1',
+    ]);
     }
 }
