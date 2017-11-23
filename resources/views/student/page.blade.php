@@ -32,10 +32,10 @@
                     <h3>Оценки</h3>
                     <table class="table table-striped">
                         <thead>
-                        <tr>
+                        <tr class="small">
                             <th>Дата</th>
-                            <th>Дисциплина</th>
-                            <th>Преподователь</th>
+                            <th>Д-а</th>
+                            <th>П-ль</th>
                             <th>Оценка</th>
                         </tr>
                         </thead>
@@ -45,8 +45,8 @@
                                 <td>{{ $grade->schedule->LessonDate }}</td>
                                 <td>{{ $grade->schedule->teaching->SubjectShortTitle }}</td>
                                 <td>
-                                    {{ $grade->schedule->teaching->professor->Surname }}
-                                    {{ $grade->schedule->teaching->professor->Name }}
+                                    {{ $grade->schedule->teaching->professor->Surname }}<br>
+                                    {{ $grade->schedule->teaching->professor->Name }}<br>
                                     {{ $grade->schedule->teaching->professor->Patronymic }}
                                 </td>
                                 <td>{{ $grade->Grade }}</td>
