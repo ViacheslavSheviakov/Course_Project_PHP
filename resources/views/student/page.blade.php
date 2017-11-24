@@ -3,39 +3,26 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-4">
             <div class="panel panel-default">
-                <div class="panel-heading">Студент</div>
+                <div class="panel-heading"><h3>Студент</h3></div>
 
                 <div class="panel-body">
-                    <h2>{{ $data[0]->Surname }} {{ $data[0]->Name }}</h2>
-                    <h4>{{ $data[0]->GroupShortTitle }}</h4>
-                    <hr>
-                    <h3>Рассписание</h3>
-                    <div class="schedule">
-                        @foreach($data[1] as $date => $lessons)
-                            <div class="day">
-                                <h3>{{ $date }}</h3>
-                                @for($i = 0; $i < 8; $i++)
-                                    <div class="lesson">
-                                        @if(isset($lessons[$i]))
-                                        <span class="lesson-type">{{ $lessons[$i][0] }}</span>
-                                        <span class="subject-title">{{ $lessons[$i][1] }}</span>
-                                        @endif
-                                    </div>
-                                @endfor
-                            </div>
-                        @endforeach
-                    </div>
+                    <h3>{{ $data[0]->Surname }} {{ $data[0]->Name }}</h3>
+                    <h4>Группа: {{ $data[0]->GroupShortTitle }}</h4>
+                </div>
+            </div>
 
-                    <br>
-                    <h3>Оценки</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3>Оценки</h3></div>
+
+                <div class="panel-body">
                     <table class="table table-striped">
                         <thead>
                         <tr class="small">
                             <th>Дата</th>
-                            <th>Д-а</th>
-                            <th>П-ль</th>
+                            <th>Дисциплина</th>
+                            <th>Преп.</th>
                             <th>Оценка</th>
                         </tr>
                         </thead>
@@ -54,10 +41,38 @@
                         @endforeach
                         </tbody>
                     </table>
-                    <hr>
-                    <h3>Скачать отчёт</h3>
-                    <br>
-                    <button class="btn btn-primary">Microsoft Word</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3>Рассписание</h3></div>
+
+                <div class="panel-body">
+                    <div class="schedule">
+                        @foreach($data[1] as $date => $lessons)
+                            <div class="day">
+                                <h3>{{ $date }}</h3>
+                                @for($i = 0; $i < 8; $i++)
+                                    <div class="lesson">
+                                        @if(isset($lessons[$i]))
+                                            <span class="lesson-type">{{ $lessons[$i][0] }}</span>
+                                            <span class="subject-title">{{ $lessons[$i][1] }}</span>
+                                        @endif
+                                    </div>
+                                @endfor
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3>Отчёт</h3></div>
+
+                <div class="panel-body">
+                    <a href="report"><button class="btn btn-primary">Microsoft Word</button></a>
                 </div>
             </div>
         </div>

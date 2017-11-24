@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('student', 'StudentPageController@index');
+Route::get('/report', 'StudentPageController@report')->name('report');
 
 Auth::routes();
 

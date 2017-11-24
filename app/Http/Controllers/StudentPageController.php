@@ -7,6 +7,7 @@ use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
 use DB;
 
+
 class StudentPageController extends Controller
 {
     public function index() {
@@ -31,6 +32,67 @@ class StudentPageController extends Controller
             $routine[$date][($lesson->LessonNumber - 1)] = $dataToInsert;
         }
 
+        //return $this->d($student);
+
         return view('student.page')->with('data', [$student, $routine]);
+    }
+
+    public function report() {
+        $student = Student::all()[0];
+
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+
+        $section = $phpWord->addSection();
+
+        $tableStyle = array(
+            'borderColor' => '006699',
+            'borderSize'  => 6,
+            'cellMargin'  => 100
+        );
+        $firstRowStyle = array('bgColor' => '66BBFF');
+        $phpWord->addTableStyle('myTable', $tableStyle, $firstRowStyle);
+
+        $table = $section->addTable('myTable');
+
+        $headFontStyle = array(
+            'name' => 'Times New Roman',
+            'bold' => true,
+            'size' => 14
+        );
+
+        $fontStyle = array(
+            'name' => 'Times New Roman',
+            'size' => 14
+        );
+
+        $cellStyle = array(
+            'valign' => 'center'
+        );
+
+        $table->addRow();
+        $table->addCell(2500, $cellStyle)->addText('Дата', $headFontStyle);
+        $table->addCell(2500, $cellStyle)->addText('Дисциплина', $headFontStyle);
+        $table->addCell(2500, $cellStyle)->addText('Преподаватель', $headFontStyle);
+        $table->addCell(2500, $cellStyle)->addText('Оценка', $headFontStyle);
+
+        foreach ($student->grades as $grade) {
+            $professor = $grade->schedule->teaching->professor;
+
+            $table->addRow();
+            $table->addCell(2500, $cellStyle)->addText($grade->schedule->LessonDate, $fontStyle);
+            $table->addCell(2500, $cellStyle)->addText($grade->schedule->teaching->SubjectShortTitle, $fontStyle);
+            $table->addCell(2500, $cellStyle)->addText(
+                $professor->Surname . ' ' .
+                $professor->Name . ' ' .
+                $professor->Patronymic,
+                $fontStyle
+            );
+            $table->addCell(2500, $cellStyle)->addText($grade->Grade, $fontStyle);
+        }
+
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+        $objWriter->save(storage_path('Student_Results.docx'));
+
+        return response()->download(storage_path('Student_Results.docx'));
     }
 }
