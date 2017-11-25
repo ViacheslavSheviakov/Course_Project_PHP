@@ -79,18 +79,14 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Journal
                 </div>
 
                 <div class="links">
                     <a href="student">Student</a>
                     <a href="teacher">Teacher</a>
                     <a href="groups">Groups</a>
-                </div>
-                <div class="links">
                     <a href="studenteditor">Student List Editor</a>
-                </div>
-                <div class="links">
                     <a href="subject">Subject List Editor</a>
                 </div>
             </div>

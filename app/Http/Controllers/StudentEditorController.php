@@ -36,11 +36,6 @@ class StudentEditorController extends Controller
             $student->GroupShortTitle = $request->GroupShortTitle;
             $student->EnteringDate = $timeNow;
             $student->save();
-//            DB::table('students')->insert
-//            (
-//                ['Surname' => $surname, 'Name' => $name, 'Patronymic' => $patronymic, 'GroupShortTitle' => $groupShortTitle, 'EnteringDate' => $timeNow,]
-//            );
-            dump($request);
         } else {
             return redirect()->route('studentEditorAdd');
         }

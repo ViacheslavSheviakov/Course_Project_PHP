@@ -11,14 +11,13 @@ namespace App\Http\Controllers;
 
 use App\Professor;
 use Illuminate\Http\Request;
-//use Illuminate\Support\Facades\DB;
 
 class TeacherRoomController extends Controller
 {
     public function index()
     {
-        $teacher = Professor::first();
-        return view('teacher.index')->with('teacher', $teacher);
+        $teachers = Professor::all()->first();
+        return view('teacher.index')->with('teacher', $teachers);
     }
 
     public function changedata(Request $request)
@@ -29,17 +28,9 @@ class TeacherRoomController extends Controller
         $teacher->Name=$request->Name;
         $teacher->Patronymic=$request->Patronymic;
         Professor::where('ProfessorId', $currentid)
-            ->update(['Surname' =>  $teacher->Surname], ['Name' =>  $teacher->Name], ['Patronymic' => $teacher->Patronymic]);
-        ////////////////////////////////
-      /*  $currentid = $request->input('id');
-        $surname = $request->input('Surname');
-        $name = $request->input('Name');
-        $patronymic = $request->input('Patronymic');
-        DB::table('professors')
-            ->where('ProfessorId', $currentid)
-            ->update(['Surname' => $surname], ['Name' =>  $name], ['Patronymic' =>  $patronymic]);*/
+            ->update($teacher);
 
-        $teacher = Professor::first();
-        return view('teacher.index')->with('teacher', $teacher);
+        $teacher = Professor::all();
+        return view('teacher.index')->with('teacher', $teacher[0]);
     }
 }
