@@ -20,6 +20,7 @@ Auth::routes();
 
 Route::get('student', 'StudentPageController@index')->name('student');
 Route::post('/report', 'StudentPageController@report')->name('report');
+Route::get('/admin', 'AdminController@index')->name('admin');
 
 Route::get('teacher', 'TeacherRoomController@index');
 Route::post('teacher', 'TeacherRoomController@changedata');

@@ -81,14 +81,6 @@
                 <div class="title m-b-md">
                     Journal
                 </div>
-
-                <div class="links">
-                    <a href="student">Student</a>
-                    <a href="teacher">Teacher</a>
-                    <a href="groups">Groups</a>
-                    <a href="studenteditor">Student List Editor</a>
-                    <a href="subject">Subject List Editor</a>
-                </div>
             </div>
         </div>
     </body>
