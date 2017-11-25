@@ -12,16 +12,22 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        $owner = new Role();
-        $owner->name         = 'owner';
-        $owner->display_name = 'Project Owner'; // optional
-        $owner->description  = 'User is the owner of a given project'; // optional
-        $owner->save();
-
         $admin = new Role();
         $admin->name         = 'admin';
-        $admin->display_name = 'User Administrator'; // optional
-        $admin->description  = 'User is allowed to manage and edit other users'; // optional
+        $admin->display_name = 'Admin'; // optional
+        $admin->description  = 'Admin'; // optional
         $admin->save();
+
+        $professor = new Role();
+        $professor->name         = 'Professor';
+        $professor->display_name = 'Professor'; // optional
+        $professor->description  = 'Professor'; // optional
+        $professor->save();
+
+        $student = new Role();
+        $student->name         = 'Student';
+        $student->display_name = 'Student'; // optional
+        $student->description  = 'Student'; // optional
+        $student->save();
     }
 }
