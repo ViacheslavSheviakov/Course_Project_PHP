@@ -37,12 +37,24 @@ class StudentPageController extends Controller
         return view('student.page')->with('data', [$student, $routine]);
     }
 
-    public function report() {
-        $student = Student::all()[0];
+    public function report(Request $request) {
+
+        $student = Student::all()->where('RecordBookId', $request->input('stuid'))->first();
 
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
 
         $section = $phpWord->addSection();
+
+        $text = $student->Surname . ' ' . $student->Name . ' ' . $student->Patronymic;
+        $fontStyle = array('name'=>'Times New Roman', 'size'=>24, 'color'=>'075776', 'bold'=>TRUE);
+
+        $section->addText(htmlspecialchars($text), $fontStyle);
+
+        $text = 'Группа: ' . $student->GroupShortTitle;
+        $fontStyle = array('name'=>'Times New Roman', 'size'=>18, 'color'=>'075776');
+
+        $section->addText(htmlspecialchars($text), $fontStyle);
+        $section->addText();
 
         $tableStyle = array(
             'borderColor' => '006699',

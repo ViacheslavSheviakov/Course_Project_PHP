@@ -8,7 +8,7 @@
 {
     display: inline-block;
     width: 100px;
-    background-color: #5194ff;
+    background-color: #ebf8ff;
     border-radius: 5px;
     text-align: center;
     margin: 5px;
@@ -18,18 +18,18 @@
 .day h3
 {
     display: block;
-    background-color: #0d55c6;
+    background-color: #6cf;
     font-size: 18px;
     border-radius: 5px 5px 0 0;
     margin: 0;
     padding: 10px 0;
-    color: #8ebaff;
+    color: #fff;
     font-weight: bold;
 }
 
 .lesson
 {
-    border-bottom: 1px #002d75 solid;
+    border-bottom: 1px #6cf dashed;
     padding: 5px 0;
     height: 50px;
 }

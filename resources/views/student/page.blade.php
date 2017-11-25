@@ -72,7 +72,11 @@
                 <div class="panel-heading"><h3>Отчёт</h3></div>
 
                 <div class="panel-body">
-                    <a href="report"><button class="btn btn-primary">Microsoft Word</button></a>
+                    <form method="POST" action="report">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="stuid" id="stuid" value="{{ $data[0]->RecordBookId }}">
+                        <input type="submit" class="btn btn-primary" value="Microsoft Word">
+                    </form>
                 </div>
             </div>
         </div>
