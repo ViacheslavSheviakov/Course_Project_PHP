@@ -34,3 +34,8 @@ Route::post('studenteditor', 'StudentEditorController@added')->name('studentEdit
 //Route::post('studenteditor', 'StudentEditorController@edited')->name('studentEditorEdited');
 
 Route::post('studenteditor/ajaxgroup', 'StudentEditorController@ajaxgroup'); //for ajax request
+
+
+Route::resource('users', 'UserController');
+Route::resource('roles', 'RoleController');
+Route::resource('permissions', 'PermissionController');
