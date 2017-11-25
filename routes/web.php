@@ -21,6 +21,9 @@ Auth::routes();
 Route::get('student', 'StudentPageController@index')->name('student');
 Route::post('/report', 'StudentPageController@report')->name('report');
 Route::get('/admin', 'AdminController@index')->name('admin');
+Route::get('/professor/edit', 'AdminController@editProfessor')->name('profedit');
+Route::get('/professor/add', 'AdminController@addProfessor')->name('profadd');
+Route::post('/professor/add', 'AdminController@addProfessorPost')->name('profaddp');
 
 Route::get('teacher', 'TeacherRoomController@index')->name('teacher');
 Route::post('teacher', 'TeacherRoomController@changedata');

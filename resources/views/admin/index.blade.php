@@ -12,6 +12,7 @@
                         <a href="groups" class="btn btn-default">Группы</a>
                         <a href="studenteditor" class="btn btn-default">Студенты</a>
                         <a href="subject" class="btn btn-default">Предметы</a>
+                        <a href="professor/edit" class="btn btn-default">Преподаватели</a>
                     </div>
                 </div>
             </div>
