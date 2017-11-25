@@ -18,17 +18,16 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('student', 'StudentPageController@index');
+Route::get('student', 'StudentPageController@index')->name('student');
+Route::post('/report', 'StudentPageController@report')->name('report');
+
 Route::get('teacher', 'TeacherRoomController@index');
 Route::post('teacher', 'TeacherRoomController@changedata');
 Route::get('groups', 'GroupsEditorController@index');
 Route::get('groups{id}','GroupsEditorController@group');
 Route::post('groups/ajaxgroup','GroupsEditorController@ajaxgroup');
 
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
-Route::post('/report', 'StudentPageController@report')->name('report');
 
 Route::get('subject', 'SubjectController@index')->name('subject');
 Route::get('subject/add', 'SubjectController@add')->name('subjectAdd');
@@ -39,7 +38,6 @@ Route::get('studenteditor', 'StudentEditorController@index')->name('studentEdito
 Route::get('studenteditor/add', 'StudentEditorController@add')->name('studentEditorAdd');
 Route::delete('studenteditor/del{id}', 'StudentEditorController@del')->name('studenteditorDel');
 Route::post('studenteditor', 'StudentEditorController@added')->name('studentEditorAdded');
-
 Route::post('studenteditor/ajaxgroup', 'StudentEditorController@ajaxgroup'); //for ajax request
 
 

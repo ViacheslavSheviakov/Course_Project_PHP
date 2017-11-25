@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Role;
 use App\Student;
 use App\Group;
+use App\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 
 class StudentEditorController extends Controller
 {
@@ -29,7 +32,17 @@ class StudentEditorController extends Controller
         $groups = Group::all();
         $timeNow = Carbon::now('Asia/Dhaka')->toDateString();
         if ($request->Surname != "" && $request->Name != "" && $request->Patronymic != "" && $request->GroupShortTitle != "") {
+            $credentials = [];
+            $credentials['name'] = $request->Surname . ' ' . $request->Name;
+            $credentials['email'] = $request->Email;
+            $credentials['password'] = '123456';
+
+            User::create($credentials);
+            $user = User::all()->where('email', $request->Email)->first();
+            $user->roles()->attach(Role::all()->where('name', 'Student')->first()->id);
+
             $student = new Student();
+            $student->RecordBookId = $user->id;
             $student->Surname = $request->Surname;
             $student->Name = $request->Name;
             $student->Patronymic = $request->Patronymic;
@@ -45,26 +58,12 @@ class StudentEditorController extends Controller
             'students'=> $students,'groups'=>$groups]);
     }
 
-//    public function edit($id)
-//    {
-//        $student = Student::where('RecordBookId', $id)->first();
-//        $groups = Group::all();
-//        dump($student);
-//        return view('studenteditor.edit')->with(['student' => $student, 'groups' => $groups]);
-//
-//    }
-
-//    public function edited(Request $request)
-//    {
-//        $recordBookId = $request->input('RecordBookId');
-//        dump($request);
-//        // return redirect()->route('studentEditor')->with('flash_message', 'User successfully edited.');
-//
-//    }
 
     public function del($id)
     {
         Student::where('RecordBookId', '=', $id)->delete();
+        User::where('id', '=', $id)->delete();
+
         return redirect()->route('studentEditor')->with('flash_message', 'User successfully deleted.');
     }
 

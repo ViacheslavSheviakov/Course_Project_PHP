@@ -6,17 +6,23 @@ use App\Student;
 use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Facades\Auth;
 
 
 class StudentPageController extends Controller
 {
-    public function index() {
-        $student = Student::all()[0];
+    public function index()
+    {
+        $user = Auth::user();
 
+        if ($user == null) {
+            return "You have to be logged in!";
+        }
+
+        $student = Student::all()->where('RecordBookId', Auth::user()->id)->first();
         $routine = [];
 
-        foreach($student->group->schedules as $lesson)
-        {
+        foreach ($student->group->schedules as $lesson) {
             $date = (new \DateTime($lesson->LessonDate))->format('d.m.Y');
 
             $dataToInsert = [
@@ -24,20 +30,18 @@ class StudentPageController extends Controller
                 $lesson->teaching->SubjectShortTitle,
             ];
 
-            if (!isset($routine[$date]))
-            {
+            if (!isset($routine[$date])) {
                 $routine[$date] = [];
             }
 
             $routine[$date][($lesson->LessonNumber - 1)] = $dataToInsert;
         }
 
-        //return $this->d($student);
-
         return view('student.page')->with('data', [$student, $routine]);
     }
 
-    public function report(Request $request) {
+    public function report(Request $request)
+    {
 
         $student = Student::all()->where('RecordBookId', $request->input('stuid'))->first();
 
@@ -46,20 +50,20 @@ class StudentPageController extends Controller
         $section = $phpWord->addSection();
 
         $text = $student->Surname . ' ' . $student->Name . ' ' . $student->Patronymic;
-        $fontStyle = array('name'=>'Times New Roman', 'size'=>24, 'color'=>'075776', 'bold'=>TRUE);
+        $fontStyle = array('name' => 'Times New Roman', 'size' => 24, 'color' => '075776', 'bold' => TRUE);
 
         $section->addText(htmlspecialchars($text), $fontStyle);
 
         $text = 'Группа: ' . $student->GroupShortTitle;
-        $fontStyle = array('name'=>'Times New Roman', 'size'=>18, 'color'=>'075776');
+        $fontStyle = array('name' => 'Times New Roman', 'size' => 18, 'color' => '075776');
 
         $section->addText(htmlspecialchars($text), $fontStyle);
         $section->addText();
 
         $tableStyle = array(
             'borderColor' => '006699',
-            'borderSize'  => 6,
-            'cellMargin'  => 100
+            'borderSize' => 6,
+            'cellMargin' => 100
         );
         $firstRowStyle = array('bgColor' => '66BBFF');
         $phpWord->addTableStyle('myTable', $tableStyle, $firstRowStyle);

@@ -16,6 +16,7 @@
                                 <th>Фамилия</th>
                                 <th>Имя</th>
                                 <th>Отчество</th>
+                                <th>E-mail</th>
                                 <th>Группа</th>
                                 <th>Инструменты</th>
                             </tr>
@@ -25,12 +26,13 @@
                                 <td>{{ Form::text('Surname', null, array('class' => 'form-control')) }}</td>
                                 <td>{{ Form::text('Name', null, array('class' => 'form-control')) }}</td>
                                 <td>{{ Form::text('Patronymic', null, array('class' => 'form-control')) }}</td>
+                                <td>{{ Form::text('Email', null, array('class' => 'form-control')) }}</td>
                                 <td>
                                     <select name="GroupShortTitle" class="form-control">
-                                         @foreach($groups as $group)
+                                        @foreach($groups as $group)
                                             <option value="{{$group->GroupShortTitle}}">{{$group->GroupShortTitle}}</option>
                                         @endforeach
-                                         </select>
+                                    </select>
                                 </td>
                                 <td>
                                     {{ Form::submit('Добавить', array('class' => 'btn btn-success btn-lg btn-block')) }}

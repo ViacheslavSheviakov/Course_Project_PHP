@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    @role('Student')
     <div class="container">
         <div class="row">
             <div class="col-md-4">
@@ -82,4 +83,5 @@
             </div>
         </div>
     </div>
+    @endrole
 @endsection

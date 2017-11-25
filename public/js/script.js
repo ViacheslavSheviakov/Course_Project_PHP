@@ -7,10 +7,6 @@ $(document).on('change', '#chgroup', function (e) {
 
     var id = $(this).parent().parent().find("#id").html();
 
-    alert(id);
-    alert(this.value);
-
-
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -27,9 +23,4 @@ $(document).on('change', '#chgroup', function (e) {
             //alert('ok');
         }
     })
-        .done(function (msg) {
-
-            alert(msg)
-
-        });
 });
