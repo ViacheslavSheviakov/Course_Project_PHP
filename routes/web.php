@@ -25,10 +25,8 @@ Route::get('groups', 'GroupsEditorController@index');
 Route::get('groups{id}','GroupsEditorController@group');
 Route::post('groups/ajaxgroup','GroupsEditorController@ajaxgroup');
 
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
 
 
 Route::get('subject', 'SubjectController@index')->name('subject');
@@ -49,4 +47,6 @@ Route::post('studenteditor/ajaxgroup', 'StudentEditorController@ajaxgroup'); //f
 Route::resource('users', 'UserController');
 Route::resource('roles', 'RoleController');
 Route::resource('permissions', 'PermissionController');
+
+Route::post('report', 'StudentPageController@report');
 
