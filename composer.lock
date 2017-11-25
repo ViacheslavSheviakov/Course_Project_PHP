@@ -4,6 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+    "hash": "9ee9286a05c4121b0b26108d4ba46449",
     "content-hash": "7e08d1f9136bb16346abcb0d1c4f7b2d",
     "packages": [
         {
@@ -595,11 +596,7 @@
                 "framework",
                 "laravel"
             ],
-<<<<<<< HEAD
             "time": "2017-11-14 15:08:13"
-=======
-            "time": "2017-11-14T15:08:13+00:00"
->>>>>>> 635abe89215770c3ad6a7c89eb85b92f173ba1c5
         },
         {
             "name": "laravel/tinker",
@@ -1121,7 +1118,7 @@
                 "php",
                 "zip"
             ],
-            "time": "2014-06-05T11:42:24+00:00"
+            "time": "2014-06-05 11:42:24"
         },
         {
             "name": "phpoffice/common",
@@ -1176,7 +1173,7 @@
                 "office",
                 "php"
             ],
-            "time": "2017-11-23T14:13:25+00:00"
+            "time": "2017-11-23 14:13:25"
         },
         {
             "name": "phpoffice/phpword",
@@ -1276,7 +1273,7 @@
                 "word",
                 "writer"
             ],
-            "time": "2016-07-31T08:53:39+00:00"
+            "time": "2016-07-31 08:53:39"
         },
         {
             "name": "psr/container",
@@ -1634,7 +1631,6 @@
         },
         {
             "name": "symfony/console",
-<<<<<<< HEAD
             "version": "v3.3.6",
             "source": {
                 "type": "git",
@@ -1645,18 +1641,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/console/zipball/b0878233cb5c4391347e5495089c7af11b8e6201",
                 "reference": "b0878233cb5c4391347e5495089c7af11b8e6201",
-=======
-            "version": "v3.3.13",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/console.git",
-                "reference": "63cd7960a0a522c3537f6326706d7f3b8de65805"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/63cd7960a0a522c3537f6326706d7f3b8de65805",
-                "reference": "63cd7960a0a522c3537f6326706d7f3b8de65805",
->>>>>>> 635abe89215770c3ad6a7c89eb85b92f173ba1c5
                 "shasum": ""
             },
             "require": {
@@ -1712,19 +1696,11 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-<<<<<<< HEAD
             "time": "2017-07-29 21:27:59"
         },
         {
             "name": "symfony/css-selector",
             "version": "v3.3.6",
-=======
-            "time": "2017-11-16T15:24:32+00:00"
-        },
-        {
-            "name": "symfony/css-selector",
-            "version": "v3.3.13",
->>>>>>> 635abe89215770c3ad6a7c89eb85b92f173ba1c5
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
@@ -1759,7 +1735,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jean-Fran??ois Simon",
+                    "name": "Jean-François Simon",
                     "email": "jeanfrancois.simon@sensiolabs.com"
                 },
                 {
@@ -1777,11 +1753,7 @@
         },
         {
             "name": "symfony/debug",
-<<<<<<< HEAD
             "version": "v3.3.6",
-=======
-            "version": "v3.3.13",
->>>>>>> 635abe89215770c3ad6a7c89eb85b92f173ba1c5
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
@@ -1837,11 +1809,7 @@
         },
         {
             "name": "symfony/event-dispatcher",
-<<<<<<< HEAD
             "version": "v3.3.6",
-=======
-            "version": "v3.3.13",
->>>>>>> 635abe89215770c3ad6a7c89eb85b92f173ba1c5
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -1904,11 +1872,7 @@
         },
         {
             "name": "symfony/finder",
-<<<<<<< HEAD
             "version": "v3.3.6",
-=======
-            "version": "v3.3.13",
->>>>>>> 635abe89215770c3ad6a7c89eb85b92f173ba1c5
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
@@ -1957,11 +1921,7 @@
         },
         {
             "name": "symfony/http-foundation",
-<<<<<<< HEAD
             "version": "v3.3.6",
-=======
-            "version": "v3.3.13",
->>>>>>> 635abe89215770c3ad6a7c89eb85b92f173ba1c5
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
@@ -1969,13 +1929,8 @@
             },
             "dist": {
                 "type": "zip",
-<<<<<<< HEAD
                 "url": "https://api.github.com/repos/symfony/http-foundation/zipball/49e8cd2d59a7aa9bfab19e46de680c76e500a031",
                 "reference": "49e8cd2d59a7aa9bfab19e46de680c76e500a031",
-=======
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/5943f0f19817a7e05992d20a90729b0dc93faf36",
-                "reference": "5943f0f19817a7e05992d20a90729b0dc93faf36",
->>>>>>> 635abe89215770c3ad6a7c89eb85b92f173ba1c5
                 "shasum": ""
             },
             "require": {
@@ -2015,7 +1970,6 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-<<<<<<< HEAD
             "time": "2017-07-21 11:04:46"
         },
         {
@@ -2030,22 +1984,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/http-kernel/zipball/db10d05f1d95e4168e638db7a81c79616f568ea5",
                 "reference": "db10d05f1d95e4168e638db7a81c79616f568ea5",
-=======
-            "time": "2017-11-13T18:13:16+00:00"
-        },
-        {
-            "name": "symfony/http-kernel",
-            "version": "v3.3.13",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/http-kernel.git",
-                "reference": "a2a942172b742217ab2ccd9399494af2aa17c766"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/a2a942172b742217ab2ccd9399494af2aa17c766",
-                "reference": "a2a942172b742217ab2ccd9399494af2aa17c766",
->>>>>>> 635abe89215770c3ad6a7c89eb85b92f173ba1c5
                 "shasum": ""
             },
             "require": {
@@ -2118,11 +2056,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
-<<<<<<< HEAD
             "time": "2017-08-01 10:25:59"
-=======
-            "time": "2017-11-16T18:14:43+00:00"
->>>>>>> 635abe89215770c3ad6a7c89eb85b92f173ba1c5
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -2185,7 +2119,6 @@
         },
         {
             "name": "symfony/process",
-<<<<<<< HEAD
             "version": "v3.3.6",
             "source": {
                 "type": "git",
@@ -2196,18 +2129,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/process/zipball/07432804942b9f6dd7b7377faf9920af5f95d70a",
                 "reference": "07432804942b9f6dd7b7377faf9920af5f95d70a",
-=======
-            "version": "v3.3.13",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/process.git",
-                "reference": "a56a3989fb762d7b19a0cf8e7693ee99a6ffb78d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/a56a3989fb762d7b19a0cf8e7693ee99a6ffb78d",
-                "reference": "a56a3989fb762d7b19a0cf8e7693ee99a6ffb78d",
->>>>>>> 635abe89215770c3ad6a7c89eb85b92f173ba1c5
                 "shasum": ""
             },
             "require": {
@@ -2243,19 +2164,11 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-<<<<<<< HEAD
             "time": "2017-07-13 13:05:09"
         },
         {
             "name": "symfony/routing",
             "version": "v3.3.6",
-=======
-            "time": "2017-11-13T15:31:11+00:00"
-        },
-        {
-            "name": "symfony/routing",
-            "version": "v3.3.13",
->>>>>>> 635abe89215770c3ad6a7c89eb85b92f173ba1c5
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/routing.git",
@@ -2333,11 +2246,7 @@
         },
         {
             "name": "symfony/translation",
-<<<<<<< HEAD
             "version": "v3.3.6",
-=======
-            "version": "v3.3.13",
->>>>>>> 635abe89215770c3ad6a7c89eb85b92f173ba1c5
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
@@ -2402,11 +2311,7 @@
         },
         {
             "name": "symfony/var-dumper",
-<<<<<<< HEAD
             "version": "v3.3.6",
-=======
-            "version": "v3.3.13",
->>>>>>> 635abe89215770c3ad6a7c89eb85b92f173ba1c5
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
@@ -2567,10 +2472,7 @@
                 "env",
                 "environment"
             ],
-<<<<<<< HEAD
             "time": "2016-09-01 10:05:43"
-=======
-            "time": "2016-09-01T10:05:43+00:00"
         },
         {
             "name": "zendframework/zend-escaper",
@@ -2615,7 +2517,7 @@
                 "escaper",
                 "zf2"
             ],
-            "time": "2015-05-07T14:55:31+00:00"
+            "time": "2015-05-07 14:55:31"
         },
         {
             "name": "zendframework/zend-stdlib",
@@ -2670,7 +2572,7 @@
                 "stdlib",
                 "zf2"
             ],
-            "time": "2015-07-21T13:55:46+00:00"
+            "time": "2015-07-21 13:55:46"
         },
         {
             "name": "zendframework/zend-validator",
@@ -2735,8 +2637,7 @@
                 "validator",
                 "zf2"
             ],
-            "time": "2015-09-08T21:04:17+00:00"
->>>>>>> 635abe89215770c3ad6a7c89eb85b92f173ba1c5
+            "time": "2015-09-08 21:04:17"
         }
     ],
     "packages-dev": [
@@ -2894,7 +2795,7 @@
             ],
             "authors": [
                 {
-                    "name": "Fran??ois Zaninotto"
+                    "name": "François Zaninotto"
                 }
             ],
             "description": "Faker is a PHP library that generates fake data for you.",
@@ -2989,7 +2890,7 @@
             ],
             "authors": [
                 {
-                    "name": "P??draic Brady",
+                    "name": "Pádraic Brady",
                     "email": "padraic.brady@gmail.com",
                     "homepage": "http://blog.astrumfutura.com"
                 },
