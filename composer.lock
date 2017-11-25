@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "7a610c759a0deaa6da3784ce0668e83a",
+    "content-hash": "81a0e2bcc41d850e83ec10d86ebb5763",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -405,6 +405,64 @@
                 }
             ],
             "time": "2015-04-20T18:58:01+00:00"
+        },
+        {
+            "name": "klaravel/ntrust",
+            "version": "v1.1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/klaravel/ntrust.git",
+                "reference": "e5a176f23517b5240d6d6174b57d8583d7e39489"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/klaravel/ntrust/zipball/e5a176f23517b5240d6d6174b57d8583d7e39489",
+                "reference": "e5a176f23517b5240d6d6174b57d8583d7e39489",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/cache": "5.*",
+                "illuminate/console": "5.*",
+                "illuminate/support": "5.*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Klaravel\\Ntrust\\NtrustServiceProvider"
+                    ],
+                    "aliases": {
+                        "Ntrust": "Klaravel\\Ntrust\\NtrustFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Klaravel\\Ntrust\\": "src/Ntrust"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Keyur Ajmera",
+                    "email": "ajmerainfo@gmail.com"
+                }
+            ],
+            "description": "Role-Based Permissions for Laravel 5.3+",
+            "keywords": [
+                "admin",
+                "laravel",
+                "ntrust",
+                "permissions",
+                "role",
+                "trust",
+                "user",
+                "user role permissions"
+            ],
+            "time": "2017-09-06T20:33:22+00:00"
         },
         {
             "name": "laravel/framework",
