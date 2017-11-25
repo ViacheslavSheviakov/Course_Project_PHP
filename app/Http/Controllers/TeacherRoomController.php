@@ -30,7 +30,7 @@ class TeacherRoomController extends Controller
         Professor::where('ProfessorId', $currentid)
             ->update($teacher);
 
-        $teacher = Professor::all();
-        return view('teacher.index')->with('teacher', $teacher[0]);
+        $teacher = Professor::all()->first();
+        return view('teacher.index')->with('teacher', $teacher);
     }
 }

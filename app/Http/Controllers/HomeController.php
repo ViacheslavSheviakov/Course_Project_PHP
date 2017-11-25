@@ -38,7 +38,7 @@ class HomeController extends Controller
         }
         else if ($user->hasRole('Professor'))
         {
-            $view = 'Professor view';
+            $view = redirect()->route('teacher');
         }
         else if ($user->hasRole('Admin'))
         {

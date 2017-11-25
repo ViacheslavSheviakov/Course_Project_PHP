@@ -22,7 +22,7 @@ Route::get('student', 'StudentPageController@index')->name('student');
 Route::post('/report', 'StudentPageController@report')->name('report');
 Route::get('/admin', 'AdminController@index')->name('admin');
 
-Route::get('teacher', 'TeacherRoomController@index');
+Route::get('teacher', 'TeacherRoomController@index')->name('teacher');
 Route::post('teacher', 'TeacherRoomController@changedata');
 Route::get('groups', 'GroupsEditorController@index');
 Route::get('groups{id}','GroupsEditorController@group');
