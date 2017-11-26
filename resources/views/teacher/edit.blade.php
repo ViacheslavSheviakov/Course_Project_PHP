@@ -39,7 +39,7 @@
                                         {{ Form::close() }}
                                     </td>
                                     <td>
-                                        {{ Form::open(array('method' => 'DELETE', 'route' => ['profdel', $teacher->ProfessorId])) }}
+                                        {{ Form::open(array('method' => 'DELETE', 'route' => ['profdel', $teacher->ProfessorId], 'onsubmit' => 'return ConfirmDelete()')) }}
                                         {{ Form::submit('Удалить', array('class' => 'btn btn-danger btn-block')) }}
                                         {{ Form::close() }}
                                     </td>
@@ -51,4 +51,15 @@
             </div>
         </div>
     </div>
+    <script>
+
+        function ConfirmDelete() {
+            var x = confirm("Вы уверены, что хотите удалить этого преподавателя?");
+            if (x)
+                return true;
+            else
+                return false;
+        }
+
+    </script>
 @endsection
