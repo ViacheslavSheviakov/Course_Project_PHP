@@ -28,6 +28,11 @@ Route::delete('/professor/del{id}', 'AdminController@delProfessor')->name('profd
 
 Route::get('teacher', 'TeacherRoomController@index')->name('teacher');
 Route::post('teacher', 'TeacherRoomController@changedata');
+
+Route::get('edit', 'AdminController@editPersonalData')->name('edit-get');
+Route::post('edit', 'AdminController@editPersonalDataPost')->name('edit-post');
+
+
 Route::get('groups', 'GroupsEditorController@index');
 Route::get('groups{id}','GroupsEditorController@group');
 Route::post('groups/ajaxgroup','GroupsEditorController@ajaxgroup');

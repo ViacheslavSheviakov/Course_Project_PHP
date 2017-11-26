@@ -15,6 +15,15 @@
                 </div>
 
                 <div class="panel panel-default">
+                    <div class="panel-heading">Персональные данные</div>
+
+                    <div class="panel-body">
+                        <p>Здесь Вы можете изменить свой E-mail и Пароль</p>
+                        <a href="edit" class="btn btn-primary btn-block">Изменить</a>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
                     <div class="panel-heading"><h3>Оценки</h3></div>
 
                     <div class="panel-body">

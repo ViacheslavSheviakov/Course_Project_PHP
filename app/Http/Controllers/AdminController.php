@@ -9,6 +9,8 @@ use App\Teaching;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use Zend\Stdlib\Response;
 
 class AdminController extends Controller
@@ -62,5 +64,41 @@ class AdminController extends Controller
         User::where('id', '=', $id)->delete();
 
         return $this->editProfessor();
+    }
+
+    public function editPersonalData()
+    {
+        $view = view('welcome');
+        $user = Auth::user();
+
+        if ($user != null)
+        {
+            $view = view('admin.change');
+        }
+
+        return $view;
+    }
+
+    public function editPersonalDataPost(Request $request)
+    {
+        $view = redirect()->route('home');
+        $user = Auth::user();
+
+        $validate = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'pass' => 'min:6|required',
+            'pass-conf' => 'min:6|same:pass'
+        ]);
+
+        if ($validate->fails())
+        {
+            $view = view('admin.change')->with('errors', $validate->errors());
+        }
+
+        $user->email = $request->input('email');
+        $user->password = $request->input('pass');
+        $user->save();
+
+        return $view;
     }
 }

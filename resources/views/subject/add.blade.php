@@ -5,10 +5,9 @@
         <div class="row">
             <div class="col-md-12 col-md-offset-0">
                 <div class="panel panel-default">
+                    <div class="panel-heading">Добавление дисциплины</div>
 
                     <div class="panel-body">
-
-                        <h3>Добавление предмета</h3>
                         {{ Form::open(array('route' => 'subjectAdded')) }}
                         <table class="table table-striped">
                             <thead>
@@ -25,10 +24,10 @@
                                     {{ Form::text('SubjectShortTitle', null, array('class' => 'form-control')) }}</td>
                                 <td>{{ Form::text('SubjectFullTitle', null, array('class' => 'form-control')) }}</td>
                                 <td>
-                                    {{Form::selectRange('Credits', 1, 7)}}
+                                    {{ Form::selectRange('Credits', 1, 7, 3, array('class' => 'form-control')) }}
                                 </td>
                                 <td>
-                                    {{ Form::submit('Добавить', array('class' => 'btn btn-success btn-lg btn-block')) }}
+                                    {{ Form::submit('Добавить', array('class' => 'btn btn-success btn-block')) }}
                                 </td>
                             </tr>
                             </tbody>
@@ -37,7 +36,7 @@
                         <br>
                     </div>
                 </div>
-                <a class="button btn-default" href="{{route('subject')}}" role="button"> Список предметов</a>
+                <a class="btn btn-default" href="{{route('subject')}}" role="button"> Список предметов</a>
             </div>
         </div>
     </div>

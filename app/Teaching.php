@@ -16,6 +16,6 @@ class Teaching extends Model
 
     public function subject()
     {
-        return $this->hasOne('App\Subject', 'SubjectId', 'SubjectId');
+        return $this->hasOne('App\Subject', 'SubjectShortTitle', 'SubjectShortTitle');
     }
 }

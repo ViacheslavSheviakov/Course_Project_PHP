@@ -15,18 +15,34 @@
                         </h3>
                     </div>
                 </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Персональные данные</div>
+
+                    <div class="panel-body">
+                        <p>Здесь Вы можете изменить свой E-mail и Пароль</p>
+                        <a href="edit" class="btn btn-primary btn-block">Изменить</a>
+                    </div>
+                </div>
             </div>
 
             <div class="col-md-8">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Предметы</div>
+                    <div class="panel-heading">Читаемые дисциплина</div>
 
                     <div class="panel-body">
-                        <ul>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Аббревиатура</th>
+                                <th>Полное название</th>
+                            </tr>
                             @foreach($teacher->teachings as $teaching)
-                                <li>{{ $teaching->SubjectShortTitle }}</li>
+                                <tr>
+                                    <td><i>{{ $teaching->SubjectShortTitle }}</i></td>
+                                    <td>{{ $teaching->subject->SubjectFullTitle }}</td>
+                                </tr>
                             @endforeach
-                        </ul>
+                        </table>
                     </div>
                 </div>
             </div>
