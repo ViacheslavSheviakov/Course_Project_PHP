@@ -31,7 +31,8 @@ class StudentEditorController extends Controller
     {
         $groups = Group::all();
         $timeNow = Carbon::now('Asia/Dhaka')->toDateString();
-        if ($request->Surname != "" && $request->Name != "" && $request->Patronymic != "" && $request->GroupShortTitle != "") {
+        if ($request->Surname != "" && $request->Name != "" && $request->Patronymic != "" && $request->GroupShortTitle != "")
+        {
             $credentials = [];
             $credentials['name'] = $request->Surname . ' ' . $request->Name;
             $credentials['email'] = $request->Email;
@@ -49,7 +50,9 @@ class StudentEditorController extends Controller
             $student->GroupShortTitle = $request->GroupShortTitle;
             $student->EnteringDate = $timeNow;
             $student->save();
-        } else {
+        }
+        else
+        {
             return redirect()->route('studentEditorAdd');
         }
         $students = Student::all();
@@ -69,11 +72,12 @@ class StudentEditorController extends Controller
 
     public function ajaxgroup(Request $request)
     {
-        if($request->ajax()) {
+        if($request->ajax())
+        {
             $recordBookId = $request->input('RecordBookId');
             $groupShortTitle = $request->input('val');
-            Student::where('RecordBookId', $recordBookId)
-                ->update(['GroupShortTitle' =>$groupShortTitle]);
+            Student::where('RecordBookId', $recordBookId)->update(['GroupShortTitle' =>$groupShortTitle]);
+
             return "Done";
         }
     }

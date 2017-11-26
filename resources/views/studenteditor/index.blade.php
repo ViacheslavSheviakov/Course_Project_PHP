@@ -42,7 +42,7 @@
                                         {{--{!! Form::close() !!}--}}
                                     {{--</td>--}}
                                     <td>
-                                        {!! Form::open(['method' => 'DELETE', 'route' => ['studenteditorDel', $student->RecordBookId],]) !!}
+                                        {!! Form::open(['method' => 'DELETE', 'route' => ['studenteditorDel', $student->RecordBookId]]) !!}
                                         {!! Form::submit('Удалить', ['class' => 'btn btn-danger','data-toggle'=>'confirmation', 'data-title'=>'Delete','data-content'=>'Delete student' ]) !!}
                                         {!! Form::close() !!}
                                     </td>

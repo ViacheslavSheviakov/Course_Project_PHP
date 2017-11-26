@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Group;
 use App\Professor;
 use App\Role;
+use App\Teaching;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -52,5 +54,13 @@ class AdminController extends Controller
         }
 
         return view('teacher.edit')->with('teachers', Professor::all());
+    }
+
+    public function delProfessor($id)
+    {
+        Professor::where('ProfessorId', '=', $id)->delete();
+        User::where('id', '=', $id)->delete();
+
+        return $this->editProfessor();
     }
 }

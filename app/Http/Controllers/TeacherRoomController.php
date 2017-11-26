@@ -11,13 +11,22 @@ namespace App\Http\Controllers;
 
 use App\Professor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TeacherRoomController extends Controller
 {
     public function index()
     {
-        $teachers = Professor::all()->first();
-        return view('teacher.index')->with('teacher', $teachers);
+        $user = Auth::user();
+        $view = redirect()->route('welcome');
+
+        if ($user != null)
+        {
+            $teacher = Professor::where('ProfessorId', $user->id)->first();
+            $view = view('teacher.index')->with('teacher', $teacher);
+        }
+
+        return $view;
     }
 
     public function changedata(Request $request)

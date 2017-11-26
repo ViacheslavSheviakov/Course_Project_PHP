@@ -16,9 +16,9 @@ class CreateGroupsTable extends Migration
         Schema::create('groups', function (Blueprint $table) {
             $table->string('GroupShortTitle')->primary();
             $table->string('GroupFullTitle');
-            $table->integer('CuratorId')->unsigned();
+            $table->integer('CuratorId')->unsigned()->nullable();
 
-            $table->foreign('CuratorId')->references('ProfessorId')->on('professors');
+            $table->foreign('CuratorId')->references('ProfessorId')->on('professors')->onDelete('set null');
         });
     }
 

@@ -16,7 +16,7 @@
                                 <th>Фамилия</th>
                                 <th>Имя</th>
                                 <th>Отчество</th>
-                                <th>Действие</th>
+                                <th colspan="2">Действия</th>
                             </tr>
                             @foreach($teachers as $teacher)
                                 <tr>
@@ -36,6 +36,11 @@
                                         {{ Form::open(array('url' => 'profedit')) }}
                                         {{ Form::hidden('id',$teacher->ProfessorId, array('class' => 'form-control')) }}
                                         {{ Form::submit('Изменить', array('class' => 'btn btn-primary btn-block')) }}
+                                        {{ Form::close() }}
+                                    </td>
+                                    <td>
+                                        {{ Form::open(array('method' => 'DELETE', 'route' => ['profdel', $teacher->ProfessorId])) }}
+                                        {{ Form::submit('Удалить', array('class' => 'btn btn-danger btn-block')) }}
                                         {{ Form::close() }}
                                     </td>
                                 </tr>

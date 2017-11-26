@@ -35,7 +35,7 @@
                                     </select>
                                 </td>
                                 <td>
-                                    {{ Form::submit('Добавить', array('class' => 'btn btn-success btn-lg btn-block')) }}
+                                    {{ Form::submit('Добавить', array('class' => 'btn btn-success btn-block')) }}
                                 </td>
                             </tr>
                             </tbody>
@@ -44,7 +44,7 @@
                         <br>
                     </div>
                 </div>
-                <a class="button btn-default" href="{{route('studentEditor')}}" role="button"> Список студентов</a>
+                <a class="btn btn-default" href="{{route('studentEditor')}}" role="button"> Список студентов</a>
             </div>
         </div>
     </div>
