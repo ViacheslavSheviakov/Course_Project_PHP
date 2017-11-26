@@ -5,10 +5,10 @@
         <div class="row">
             <div class="col-md-12 col-md-offset-0">
                 <div class="panel panel-default">
+                    <div class="panel-heading">Добавление студента</div>
 
                     <div class="panel-body">
 
-                        <h3>Добавление студента</h3>
                         {{ Form::open(array('route' => 'studentEditorAdded')) }}
                         <table class="table table-striped">
                             <thead>

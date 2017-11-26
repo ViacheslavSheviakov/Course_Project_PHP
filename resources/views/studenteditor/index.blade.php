@@ -5,10 +5,10 @@
         <div class="row">
             <div class="col-md-12 col-md-offset-0">
                 <div class="panel panel-default panel-modest">
+                    <div class="panel-heading">Список студентов</div>
 
                     <div class="panel-body">
-
-                        <h3>Список студентов</h3>
+                        
                         <a class="btn btn-success" href="{{route('studentEditorAdd')}}" role="button">Добавить</a>
                         <table class="table table-striped">
                             <thead>

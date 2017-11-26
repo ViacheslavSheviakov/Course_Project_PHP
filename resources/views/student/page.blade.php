@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h3>Студент</h3></div>
+                    <div class="panel-heading">Студент</div>
 
                     <div class="panel-body">
                         <h3>{{ $data[0]->Surname }} {{ $data[0]->Name }}</h3>
@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h3>Оценки</h3></div>
+                    <div class="panel-heading">Оценки</div>
 
                     <div class="panel-body">
                         <table class="table table-striped">
@@ -57,7 +57,7 @@
 
             <div class="col-md-8">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h3>Рассписание</h3></div>
+                    <div class="panel-heading">Рассписание</div>
 
                     <div class="panel-body">
                         <div class="schedule">
@@ -79,7 +79,7 @@
                 </div>
 
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h3>Отчёт</h3></div>
+                    <div class="panel-heading">Отчёт</div>
 
                     <div class="panel-body">
                         <form method="POST" action="report">
