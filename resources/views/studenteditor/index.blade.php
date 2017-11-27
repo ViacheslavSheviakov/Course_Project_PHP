@@ -8,7 +8,7 @@
                     <div class="panel-heading">Список студентов</div>
 
                     <div class="panel-body">
-                        
+
                         <a class="btn btn-success" href="{{route('studentEditorAdd')}}" role="button">Добавить</a>
                         <table class="table table-striped">
                             <thead>
@@ -29,17 +29,18 @@
                                     <td>{{ $student->Surname }}</td>
                                     <td>{{ $student->Name }}</td>
                                     <td>{{ $student->Patronymic }}</td>
-                                    <td >
+                                    <td>
                                         <select id="chgroup" name="groupshorttitle" class="form-control">
                                             @foreach($groups as $group)
-                                                <option value="{{$group->GroupShortTitle}}" @if($group->GroupShortTitle===$student->GroupShortTitle) selected @endif>{{$group->GroupShortTitle}}</option>
+                                                <option value="{{$group->GroupShortTitle}}"
+                                                        @if($group->GroupShortTitle===$student->GroupShortTitle) selected @endif>{{$group->GroupShortTitle}}</option>
                                             @endforeach
                                         </select>
                                     </td>
                                     <td>{{ $student->EnteringDate }}</td>
                                     {{--<td>{!! Form::open(['method' => 'GET', 'route' => ['studenteditorEdit', $student->RecordBookId],]) !!}--}}
-                                        {{--{!! Form::submit('Изменить', ['class' => 'btn btn-primary','data-toggle'=>'confirmation', 'data-title'=>'Edit','data-content'=>'Edit student' ]) !!}--}}
-                                        {{--{!! Form::close() !!}--}}
+                                    {{--{!! Form::submit('Изменить', ['class' => 'btn btn-primary','data-toggle'=>'confirmation', 'data-title'=>'Edit','data-content'=>'Edit student' ]) !!}--}}
+                                    {{--{!! Form::close() !!}--}}
                                     {{--</td>--}}
                                     <td>
                                         {!! Form::open(['method' => 'DELETE', 'route' => ['studenteditorDel', $student->RecordBookId]]) !!}
