@@ -22,19 +22,18 @@ class TeacherRoomController extends Controller
         $user = Auth::user();
         $view = redirect()->route('welcome');
 
-        if ($user != null)
-        {
+        if ($user != null) {
             $professorSchedule = DB::table('professors')
                 ->join('teaching', 'professors.ProfessorId', '=', 'teaching.ProfessorId')
                 ->join('schedule', 'teaching.TeachingId', '=', 'schedule.TeachingId')
                 ->where('professors.professorId', '=', $user->id)
-                ->select('professors.professorId','teaching.SubjectShortTitle', 'schedule.scheduleId','schedule.LessonType', 'schedule.lessonDate','schedule.lessonNumber')
+                ->select('professors.professorId', 'teaching.SubjectShortTitle', 'schedule.scheduleId', 'schedule.LessonType', 'schedule.lessonDate', 'schedule.lessonNumber')
                 ->get();
 
             $teacher = Professor::where('ProfessorId', $user->id)->first();
-            $view = view('teacher.index')->with(['teacher'=> $teacher,'professorSchedule'=>$professorSchedule]);
+            $view = view('teacher.index')->with(['teacher' => $teacher, 'professorSchedule' => $professorSchedule]);
 
-dump( $professorSchedule);
+            dump($professorSchedule);
 
 
 //            SELECT * FROM professors
@@ -50,9 +49,9 @@ dump( $professorSchedule);
     {
         $teacher = new Professor();
         $currentid = $request->id;
-        $teacher->Surname=$request->Surname;
-        $teacher->Name=$request->Name;
-        $teacher->Patronymic=$request->Patronymic;
+        $teacher->Surname = $request->Surname;
+        $teacher->Name = $request->Name;
+        $teacher->Patronymic = $request->Patronymic;
         Professor::where('ProfessorId', $currentid)
             ->update($teacher);
 
