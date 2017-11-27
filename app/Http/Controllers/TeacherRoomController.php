@@ -33,8 +33,6 @@ class TeacherRoomController extends Controller
             $teacher = Professor::where('ProfessorId', $user->id)->first();
             $view = view('teacher.index')->with(['teacher' => $teacher, 'professorSchedule' => $professorSchedule]);
 
-            dump($professorSchedule);
-
 
 //            SELECT * FROM professors
 //            JOIN teaching ON professors.ProfessorId = teaching.ProfessorId
