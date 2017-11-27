@@ -21,8 +21,8 @@ class CreateScheduleTable extends Migration
             $table->date('LessonDate');
             $table->integer('LessonNumber');
 
-            $table->foreign('GroupShortTitle')->references('GroupShortTitle')->on('groups');
-            $table->foreign('TeachingId')->references('TeachingId')->on('teaching');
+            $table->foreign('GroupShortTitle')->references('GroupShortTitle')->on('groups')->onDelete('cascade');
+            $table->foreign('TeachingId')->references('TeachingId')->on('teaching')->onDelete('cascade');;
             $table->foreign('LessonType')->references('TypeShortTitle')->on('lesson_types');
 
         });

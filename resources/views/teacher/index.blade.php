@@ -3,41 +3,46 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-4">
                 <div class="panel panel-default">
-                    <div class="panel-heading"></div>
+                    <div class="panel-heading">Преподаватель</div>
 
                     <div class="panel-body">
-                        {{ Form::open(array('url' => 'teacher')) }}
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th>Фамилия</th>
-                                <th>Имя</th>
-                                <th>Отчество</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
+                        <h3>
+                            {{ $teacher->Surname }}
+                            {{ $teacher->Name }}
+                            {{ $teacher->Patronymic }}
+                        </h3>
+                    </div>
+                </div>
 
-                                {{ Form::hidden('id',$teacher->ProfessorId, array('class' => 'form-control')) }}
+                <div class="panel panel-default">
+                    <div class="panel-heading">Персональные данные</div>
 
-                                <td>
-                                    {{ Form::text('Surname',$teacher->Surname, array('class' => 'form-control')) }}
-                                </td>
-                                <td>
-                                    {{ Form::text('Name',$teacher->Name, array('class' => 'form-control')) }}
-                                </td>
-                                <td>
-                                    {{ Form::text('Patronymic',$teacher->Patronymic, array('class' => 'form-control')) }}
-                                </td>
-                                <td>
-                                    {{ Form::submit('Изменить', array('class' => 'btn btn-success btn-lg btn-block')) }}
-                                </td>
+                    <div class="panel-body">
+                        <p>Здесь Вы можете изменить свой E-mail и Пароль</p>
+                        <a href="edit" class="btn btn-primary btn-block">Изменить</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Читаемые дисциплина</div>
+
+                    <div class="panel-body">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Аббревиатура</th>
+                                <th>Полное название</th>
                             </tr>
-                            </tbody>
+                            @foreach($teacher->teachings as $teaching)
+                                <tr>
+                                    <td><i>{{ $teaching->SubjectShortTitle }}</i></td>
+                                    <td>{{ $teaching->subject->SubjectFullTitle }}</td>
+                                </tr>
+                            @endforeach
                         </table>
-                        {{ Form::close() }}
                     </div>
                 </div>
             </div>

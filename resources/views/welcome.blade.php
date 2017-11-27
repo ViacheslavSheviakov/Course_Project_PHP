@@ -72,26 +72,13 @@
                         <a href="{{ url('/home') }}">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
                     @endauth
                 </div>
             @endif
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="student">Student</a>
-                    <a href="teacher">Teacher</a>
-                    <a href="groups">Groups</a>
-                </div>
-                <div class="links">
-                    <a href="studenteditor">Student List Editor</a>
-                </div>
-                <div class="links">
-                    <a href="subject">Subject List Editor</a>
+                    Journal
                 </div>
             </div>
         </div>

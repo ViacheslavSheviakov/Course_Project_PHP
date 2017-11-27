@@ -14,7 +14,7 @@ class GroupsTableSeeder extends Seeder
         DB::table('groups')->insert([
         'GroupShortTitle' => 'SSE-16-2',
         'GroupFullTitle' => 'Software Software Engineering',
-        'CuratorId' => '1',
+        'CuratorId' => '5',
     ]);
     }
 }

@@ -13,23 +13,31 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 
 Auth::routes();
 
-Route::get('student', 'StudentPageController@index');
-Route::get('teacher', 'TeacherRoomController@index');
+Route::get('student', 'StudentPageController@index')->name('student');
+Route::post('/report', 'StudentPageController@report')->name('report');
+Route::get('/admin', 'AdminController@index')->name('admin');
+Route::get('/professor/edit', 'AdminController@editProfessor')->name('profedit');
+Route::get('/professor/add', 'AdminController@addProfessor')->name('profadd');
+Route::post('/professor/add', 'AdminController@addProfessorPost')->name('profaddp');
+Route::delete('/professor/del{id}', 'AdminController@delProfessor')->name('profdel');
+
+Route::get('teacher', 'TeacherRoomController@index')->name('teacher');
 Route::post('teacher', 'TeacherRoomController@changedata');
+
+Route::get('edit', 'AdminController@editPersonalData')->name('edit-get');
+Route::post('edit', 'AdminController@editPersonalDataPost')->name('edit-post');
+
+
 Route::get('groups', 'GroupsEditorController@index');
 Route::get('groups{id}','GroupsEditorController@group');
 Route::post('groups/ajaxgroup','GroupsEditorController@ajaxgroup');
 
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
-
-
 
 Route::get('subject', 'SubjectController@index')->name('subject');
 Route::get('subject/add', 'SubjectController@add')->name('subjectAdd');
@@ -38,11 +46,8 @@ Route::delete('subject/del{id}', 'SubjectController@del')->name('subjectDel');
 
 Route::get('studenteditor', 'StudentEditorController@index')->name('studentEditor');
 Route::get('studenteditor/add', 'StudentEditorController@add')->name('studentEditorAdd');
-//Route::get('studenteditor/edit{id}', 'StudentEditorController@edit')->name('studenteditorEdit');
 Route::delete('studenteditor/del{id}', 'StudentEditorController@del')->name('studenteditorDel');
 Route::post('studenteditor', 'StudentEditorController@added')->name('studentEditorAdded');
-//Route::post('studenteditor', 'StudentEditorController@edited')->name('studentEditorEdited');
-
 Route::post('studenteditor/ajaxgroup', 'StudentEditorController@ajaxgroup'); //for ajax request
 
 

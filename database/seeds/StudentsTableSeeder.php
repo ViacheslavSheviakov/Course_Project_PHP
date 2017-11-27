@@ -12,6 +12,7 @@ class StudentsTableSeeder extends Seeder
     public function run()
     {
         DB::table('students')->insert([
+            'RecordBookId' => 2,
             'Surname' => 'Белкин',
             'Name' => 'Василий',
             'Patronymic' => 'Андреевич',
@@ -19,6 +20,7 @@ class StudentsTableSeeder extends Seeder
             'EnteringDate' => \Carbon\Carbon::parse('2016-01-01'),
         ]);
         DB::table('students')->insert([
+            'RecordBookId' => 3,
             'Surname' => 'Смит',
             'Name' => 'Джон',
             'Patronymic' => 'Семёнович',
@@ -26,6 +28,7 @@ class StudentsTableSeeder extends Seeder
             'EnteringDate' => \Carbon\Carbon::parse('2016-01-01'),
         ]);
         DB::table('students')->insert([
+            'RecordBookId' => 4,
             'Surname' => 'Кузнецов',
             'Name' => 'Дмитрий',
             'Patronymic' => 'Сергеевич',

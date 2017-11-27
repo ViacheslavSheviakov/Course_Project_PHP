@@ -16,12 +16,12 @@ class CreateGradesTable extends Migration
         Schema::create('grades', function (Blueprint $table) {
             $table->increments('GradeId');
             $table->integer('RecordBookId')->unsigned();
-            $table->integer('ScheduleId')->unsigned();
+            $table->integer('ScheduleId')->unsigned()->nullable();;
             $table->integer('Grade');
 
 
-            $table->foreign('RecordBookId')->references('RecordBookId')->on('students');
-            $table->foreign('ScheduleId')->references('ScheduleId')->on('schedule');
+            $table->foreign('RecordBookId')->references('RecordBookId')->on('students')->onDelete('cascade');
+            $table->foreign('ScheduleId')->references('ScheduleId')->on('schedule')->onDelete('set null');
         });
     }
 

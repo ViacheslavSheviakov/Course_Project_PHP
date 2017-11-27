@@ -19,11 +19,9 @@ class DatabaseSeeder extends Seeder
             StudentsTableSeeder::class,
             TeachingTableSeeder::class,
             ScheduleTableSeeder::class,
-
             GradesTableSeeder::class,
-
             RolesTableSeeder::class,
-
+            UserTableSeeder::class,
         ]);
     }
 }

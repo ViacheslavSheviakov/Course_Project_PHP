@@ -19,8 +19,8 @@ class CreateTeachingTable extends Migration
             $table->string('SubjectShortTitle');
 
 
-            $table->foreign('ProfessorId')->references('ProfessorId')->on('professors');
-            $table->foreign('SubjectShortTitle')->references('SubjectShortTitle')->on('subjects');
+            $table->foreign('ProfessorId')->references('ProfessorId')->on('professors')->onDelete('cascade');
+            $table->foreign('SubjectShortTitle')->references('SubjectShortTitle')->on('subjects')->onDelete('cascade');
         });
     }
 

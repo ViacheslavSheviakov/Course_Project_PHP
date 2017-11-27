@@ -5,10 +5,9 @@
         <div class="row">
             <div class="col-md-12 col-md-offset-0">
                 <div class="panel panel-default">
+                    <div class="panel-heading">Дисциплины</div>
 
                     <div class="panel-body">
-
-                        <h3>Предметы</h3>
                         <a class="btn btn-success" href="{{route('subjectAdd')}}" role="button">Добавить</a>
                         <table class="table table-striped">
                             <thead>
@@ -26,11 +25,6 @@
                                     <td>{{ $subject->SubjectFullTitle }}</td>
                                     <td>{{ $subject->Credits }}</td>
                                     <td>
-                                         {{--===================second version button delete===========--}}
-                                        {{--<a class="btn btn-default"--}}
-                                           {{--href="{{route('subjectDel',['del'=>$subject->SubjectShortTitle])}}"--}}
-                                           {{--role="button">Удалить</a>--}}
-                                        {{--===================second version button delete===========--}}
                                         {!! Form::open(['method' => 'DELETE', 'route' => ['subjectDel', $subject->SubjectShortTitle],]) !!}
                                         {!! Form::submit('Удалить', ['class' => 'btn btn-danger','data-toggle'=>'confirmation', 'data-title'=>'Delete','data-content'=>'Delete user' ]) !!}
                                         {!! Form::close() !!}

@@ -13,18 +13,8 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
                     You are logged in!
-
-                    <div>
-                        <a href="{{ url('student') }}">Student</a>
-                    </div>
-                        <div class="links">
-                            <a href="studenteditor">Student List Editor</a>
-                        </div>
-                        <div class="links">
-                            <a href="subject">Subject List Editor</a>
-                        </div>
+                    But your user type is unknown...
                 </div>
             </div>
         </div>

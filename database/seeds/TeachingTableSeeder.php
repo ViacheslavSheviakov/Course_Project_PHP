@@ -12,23 +12,23 @@ class TeachingTableSeeder extends Seeder
     public function run()
     {
         DB::table('teaching')->insert([
-            'ProfessorId' => '1',
+            'ProfessorId' => 5,
             'SubjectShortTitle' => 'ОПр',
         ]);
         DB::table('teaching')->insert([
-            'ProfessorId' => '1',
+            'ProfessorId' => 5,
             'SubjectShortTitle' => 'ООП',
         ]);
         DB::table('teaching')->insert([
-            'ProfessorId' => '1',
+            'ProfessorId' => 5,
             'SubjectShortTitle' => 'БД',
         ]);
         DB::table('teaching')->insert([
-            'ProfessorId' => '2',
+            'ProfessorId' => 6,
             'SubjectShortTitle' => 'ВМ',
         ]);
         DB::table('teaching')->insert([
-            'ProfessorId' => '3',
+            'ProfessorId' => 7,
             'SubjectShortTitle' => 'ВдITб',
         ]);
     }
