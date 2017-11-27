@@ -28,7 +28,7 @@
 
             <div class="col-md-8">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Читаемые дисциплина</div>
+                    <div class="panel-heading">Читаемые дисциплины</div>
 
                     <div class="panel-body">
                         <table class="table table-bordered">
@@ -45,6 +45,45 @@
                         </table>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+
+            <div class="col-md-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h3>Рассписание</h3></div>
+
+                    <div class="panel-body">
+                        <div class="schedule">
+                            @foreach($professorSchedule as $lesson)
+                                <div class="day">
+                                    <h3>{{ $lesson->lessonDate }}</h3>
+                                    @for($i = 0; $i < 8; $i++)
+                                        <div class="lesson">
+                                            @if($lesson->lessonNumber==$i)
+                                                <span class="lesson-type">{{ $lesson->LessonType }}</span>
+                                                <span class="subject-title">{{ $lesson->SubjectShortTitle }}</span>
+                                            @endif
+                                        </div>
+                                    @endfor
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+
+                {{--<div class="panel panel-default">--}}
+                    {{--<div class="panel-heading"><h3>Отчёт</h3></div>--}}
+
+                    {{--<div class="panel-body">--}}
+                        {{--<form method="POST" action="report">--}}
+                            {{--{{ csrf_field() }}--}}
+                            {{--<input type="hidden" name="stuid" id="stuid" value="{{ $data[0]->RecordBookId }}">--}}
+                            {{--<input type="submit" class="btn btn-primary" value="Microsoft Word">--}}
+                        {{--</form>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
             </div>
         </div>
     </div>

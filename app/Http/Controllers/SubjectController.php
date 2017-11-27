@@ -13,7 +13,6 @@ class SubjectController extends Controller
     {
         $subjects = Subject::all();
         $message = "test message";
-        //dump($subjects);
         return view('subject.index')->with(['mess' => $message,
             'subjects' => $subjects]);
     }
@@ -31,9 +30,6 @@ class SubjectController extends Controller
             $subject->SubjectFullTitle=$request->SubjectFullTitle;
             $subject->Credits=$request->Credits;
             $subject->save();
-//            DB::table('subjects')->insert(
-//                ['SubjectShortTitle' => $SubjectShortTitle, 'SubjectFullTitle' => $SubjectFullTitle, 'Credits' => $Credits]
-//            );
         } else {
             return redirect()->route('subjectAdd');
         }
@@ -47,23 +43,6 @@ class SubjectController extends Controller
         $subject = Subject::findOrFail($id);
         $subject->delete();
         return redirect()->route('subject')->with('flash_message','User successfully deleted.');
-//
-//
-//
-///////////second version///////////
-//        if($id!=null&&$id!="")
-//        {
-//            DB::table('subjects')->where('SubjectShortTitle', '=', $id)->delete();
-//        }
-//
-//        $subjects = Subject::all();
-//        $message = "test message";
-//        dump($subjects);
-//        return view('subject.index')->with([
-//            'mess' => $message
-//            , 'subjects' => $subjects
-//        ]);
-        ///////////second version///////////
     }
 
 }
