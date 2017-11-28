@@ -8,6 +8,7 @@ use App\Group;
 use App\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class StudentEditorController extends Controller
@@ -78,7 +79,25 @@ class StudentEditorController extends Controller
             $groupShortTitle = $request->input('val');
             Student::where('RecordBookId', $recordBookId)->update(['GroupShortTitle' =>$groupShortTitle]);
 
-            return "Done";
+            return "Группа изменена";
         }
+    }
+
+    public function process(Request $request)
+    {
+        $students = DB::table('students');
+        $groups = Group::all();
+
+        if ($request->input('s-type') != null)
+        {
+            foreach ($request->input('s-type') as $criteria)
+            {
+                $students->orderBy($criteria);
+            }
+        }
+
+        $students = $students->get();
+
+        return view('studenteditor.index')->with(['students'=> $students,'groups'=>$groups]);
     }
 }

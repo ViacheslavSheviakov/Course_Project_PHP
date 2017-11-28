@@ -56,6 +56,7 @@ Route::get('studenteditor/add', 'StudentEditorController@add')->name('studentEdi
 Route::delete('studenteditor/del{id}', 'StudentEditorController@del')->name('studenteditorDel');
 Route::post('studenteditor', 'StudentEditorController@added')->name('studentEditorAdded');
 Route::post('studenteditor/ajaxgroup', 'StudentEditorController@ajaxgroup'); //for ajax request
+Route::get('studenteditor', 'StudentEditorController@process')->name('studenteditor.process');
 
 
 Route::resource('users', 'UserController');
