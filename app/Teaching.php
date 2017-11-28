@@ -20,11 +20,12 @@ class Teaching extends Model
     {
         return $this->hasOne('App\Subject', 'SubjectShortTitle', 'SubjectShortTitle');
     }
-//    public function schedules()
-//    {
-//        return $this
-//            ->hasMany('App\Schedule', 'TeachingId', 'TeachingId')
-//            ->orderBy('LessonDate')
-//            ->orderBy('LessonNumber');
-//    }
+
+    public function schedules()
+    {
+        return $this
+            ->hasMany('App\Schedule', 'TeachingId', 'TeachingId')
+            ->orderBy('LessonDate')
+            ->orderBy('LessonNumber');
+    }
 }

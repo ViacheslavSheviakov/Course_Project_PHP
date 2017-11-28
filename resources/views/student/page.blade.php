@@ -38,7 +38,7 @@
                             </thead>
                             <tbody>
                             @foreach($data[0]->grades as $grade)
-                                <tr>
+                                <tr id="app">
                                     <td>{{ $grade->schedule->LessonDate }}</td>
                                     <td>{{ $grade->schedule->teaching->SubjectShortTitle }}</td>
                                     <td>

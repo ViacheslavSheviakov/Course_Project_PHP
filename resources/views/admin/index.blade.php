@@ -13,6 +13,7 @@
                         <a href="studenteditor" class="btn btn-default btn-block">Студенты</a>
                         <a href="subject" class="btn btn-default btn-block">Предметы</a>
                         <a href="professor/edit" class="btn btn-default btn-block">Преподаватели</a>
+                        <a href="{{ route('schedule-step-1') }}" class="btn btn-default btn-block">Рассписание</a>
                     </div>
                 </div>
             </div>

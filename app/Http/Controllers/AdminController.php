@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Group;
 use App\Professor;
 use App\Role;
+use App\Schedule;
 use App\Teaching;
 use App\User;
 use Carbon\Carbon;
@@ -100,5 +101,53 @@ class AdminController extends Controller
         $user->save();
 
         return $view;
+    }
+
+    public function addScheduleStepOne()
+    {
+        $professors = Professor::all();
+
+        return view('admin.schedule-step-1')->with('professors', $professors);
+    }
+
+    public function addScheduleStepTwo(Request $request)
+    {
+        $professor = Professor::where('ProfessorId', '=', $request->input('id'))->first();
+
+        return view('admin.schedule-step-2')->with('professor', $professor);
+    }
+
+    public function addScheduleStepTwoPost(Request $request, $id)
+    {
+        Schedule::all()->where('ScheduleId', '=', $id)->first()->delete();
+        $professor = Professor::where('ProfessorId', '=', $request->input('id'))->first();
+
+        return view('admin.schedule-step-2')->with('professor', $professor);
+    }
+
+    public function addScheduleStepSave(Request $request)
+    {
+        $validate = Validator::make($request->all(), [
+            'date' => 'required',
+            'subj' => 'required',
+            'type' => 'required',
+            'group' => 'required',
+            'lesson-number' => 'required'
+        ]);
+
+        if (!$validate->fails())
+        {
+            $schedule = new Schedule();
+            $schedule->LessonDate = $request->input('date');
+            $schedule->TeachingId = Teaching::all()->where('ProfessorId', $request->input('id'))->where('SubjectShortTitle', $request->input('subj'))->first()->TeachingId;
+            $schedule->LessonType = $request->input('type');
+            $schedule->GroupShortTitle = $request->input('group');
+            $schedule->LessonNumber = $request->input('lesson-number');
+            $schedule->save();
+        }
+
+        $professor = Professor::where('ProfessorId', '=', $request->input('id'))->first();
+
+        return view('admin.schedule-step-2')->with('professor', $professor);
     }
 }
