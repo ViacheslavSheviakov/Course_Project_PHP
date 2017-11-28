@@ -52,7 +52,7 @@ class TeacherRoomController extends Controller
     public function grades(Request $request)
     {
         $scheduleid = $request->input('sid');
-
+        
         $grades = Grade::all()->where('ScheduleId',$scheduleid);
         $group = Schedule::all()->where('ScheduleId', $scheduleid)->pluck('GroupShortTitle')->first();
         $date = Schedule::all()->where('ScheduleId', $scheduleid)->pluck('LessonDate')->first();
