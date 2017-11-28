@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Vladimir
- * Date: 11.11.2017
- * Time: 14:14
- */
 
 namespace App\Http\Controllers;
 
@@ -26,40 +20,16 @@ class TeacherRoomController extends Controller
         $user = Auth::user();
         $view = redirect()->route('welcome');
 
-        if ($user != null)
-        {
-//            $professorSchedule = DB::table('professors')
-//                ->join('teaching', 'professors.ProfessorId', '=', 'teaching.ProfessorId')
-//                ->join('schedule', 'teaching.TeachingId', '=', 'schedule.TeachingId')
-//                ->where('professors.professorId', '=', $user->id)
-//                ->select('professors.professorId','teaching.SubjectShortTitle', 'schedule.scheduleId','schedule.LessonType', 'schedule.lessonDate','schedule.lessonNumber')
-//                ->get();
-
-            //$professor=Professor::where('professorId', Auth::user()->id)->first();
-            $professor=Schedule::all()->teaching->professor->where('professorId',Auth::user()->id);
-            //$professor=$professor
-            $routine = [];
-            dump( $professor);
-//            foreach ($professor->teachings->schedules as $lesson)
-//            {
-//                $date = (new \DateTime($lesson->LessonDate))->format('d.m.Y');
-//                $dataToInsert = [
-//                    $lesson->LessonType,
-//                    $lesson->teaching->SubjectShortTitle,
-//                ];
-//                if (!isset($routine[$date])) {
-//                    $routine[$date] = [];
-//                }
-//                $routine[$date][($lesson->LessonNumber - 1)] = $dataToInsert;
-            //}
-
-            $professorSchedule="";
-
+        if ($user != null) {
+            $professorSchedule = DB::table('professors')
+                ->join('teaching', 'professors.ProfessorId', '=', 'teaching.ProfessorId')
+                ->join('schedule', 'teaching.TeachingId', '=', 'schedule.TeachingId')
+                ->where('professors.professorId', '=', $user->id)
+                ->select('professors.professorId', 'teaching.SubjectShortTitle', 'schedule.scheduleId', 'schedule.LessonType', 'schedule.lessonDate', 'schedule.lessonNumber')
+                ->get();
 
             $teacher = Professor::where('ProfessorId', $user->id)->first();
-            $view = view('teacher.index')->with(['teacher'=> $teacher,'professorSchedule'=>$professorSchedule]);
-
-
+            $view = view('teacher.index')->with(['teacher' => $teacher, 'professorSchedule' => $professorSchedule]);
 
 
 //            SELECT * FROM professors
@@ -75,9 +45,9 @@ class TeacherRoomController extends Controller
     {
         $teacher = new Professor();
         $currentid = $request->id;
-        $teacher->Surname=$request->Surname;
-        $teacher->Name=$request->Name;
-        $teacher->Patronymic=$request->Patronymic;
+        $teacher->Surname = $request->Surname;
+        $teacher->Name = $request->Name;
+        $teacher->Patronymic = $request->Patronymic;
         Professor::where('ProfessorId', $currentid)
             ->update($teacher);
 
@@ -122,3 +92,4 @@ class TeacherRoomController extends Controller
         }
     }
 }
+
