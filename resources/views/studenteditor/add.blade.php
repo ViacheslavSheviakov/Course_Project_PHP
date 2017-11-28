@@ -44,7 +44,7 @@
                         <br>
                     </div>
                 </div>
-                <a class="btn btn-default" href="{{route('studentEditor')}}" role="button"> Список студентов</a>
+                <a class="btn btn-default" href="{{ route('studentEditor') }}" role="button"> Список студентов</a>
             </div>
         </div>
     </div>
