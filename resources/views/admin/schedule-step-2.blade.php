@@ -77,9 +77,6 @@
                                             {!! Form::submit('Удалить', ['class' => 'btn btn-danger']) !!}
                                             {!! Form::close() !!}
                                         </td>
-                                        <td>
-                                            {{ $scheduleM->ScheduleId }}
-                                        </td>
                                     </tr>
                                 @endforeach
                             @endforeach
