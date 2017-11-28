@@ -14,9 +14,9 @@ class StudentPageController extends Controller
             return "You have to be logged in!";
         }
         $student = Student::all()->where('RecordBookId', Auth::user()->id)->first();
-        dump($student);
+
         $routine = [];
-        dump($student->group);
+
         foreach ($student->group->schedules as $lesson) {
             $date = (new \DateTime($lesson->LessonDate))->format('d.m.Y');
             $dataToInsert = [
@@ -30,6 +30,7 @@ class StudentPageController extends Controller
         }
         return view('student.page')->with('data', [$student, $routine]);
     }
+    
     public function report(Request $request)
     {
         $student = Student::all()->where('RecordBookId', $request->input('stuid'))->first();

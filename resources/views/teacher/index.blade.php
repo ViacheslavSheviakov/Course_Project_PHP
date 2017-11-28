@@ -61,11 +61,16 @@
                             @foreach($professorSchedule as $lesson)
                                 <div class="day">
                                     <h3>{{ $lesson->lessonDate }}</h3>
-                                    @for($i = 0; $i < 7; $i++)
+                                    @for($i = 1; $i < 8; $i++)
                                         <div class="lesson">
                                             @if($lesson->lessonNumber==$i)
-                                                <span class="lesson-type">{{ $lesson->LessonType }}</span>
-                                                <span class="subject-title">{{ $lesson->SubjectShortTitle }}</span>
+                                                {!! Form::open(['method' => 'POST', 'route' => 'grades']) !!}
+                                                {!! Form::hidden('sid',$lesson->scheduleId, array('class' => 'form-control')) !!}
+                                                <span><small>{{ $lesson->GroupShortTitle }}</small></span>
+                                                <span class="lesson-type"><small>{{ $lesson->LessonType }}</small></span>
+
+                                                {!! Form::submit($lesson->SubjectShortTitle, ['class' => 'subject-title' ]) !!}
+                                                {!! Form::close() !!}
                                             @endif
                                         </div>
                                     @endfor

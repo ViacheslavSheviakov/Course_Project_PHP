@@ -29,7 +29,6 @@
                                         {!! Form::submit('Удалить', ['class' => 'btn btn-danger','data-toggle'=>'confirmation', 'data-title'=>'Delete','data-content'=>'Delete user' ]) !!}
                                         {!! Form::close() !!}
                                     </td>
-
                                 </tr>
                             @endforeach
                             </tbody>
@@ -41,14 +40,3 @@
         </div>
     </div>
 @endsection
-
-{{--<h1>Subjects</h1>--}}
-{{--{{$mess}}--}}
-
-{{--@foreach($subjects as $subject)--}}
-{{--<p>{{$subject->SubjectShortTitle}}</p>--}}
-{{--<p>{{$subject->SubjectFullTitle}}</p>--}}
-{{--<p>{{$subject->Credits}}</p>--}}
-{{--<hr>--}}
-
-{{--@endforeach--}}

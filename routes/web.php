@@ -28,7 +28,7 @@ Route::delete('/professor/del{id}', 'AdminController@delProfessor')->name('profd
 
 Route::get('teacher', 'TeacherRoomController@index')->name('teacher');
 Route::post('teacher', 'TeacherRoomController@changedata');
-Route::get('teacher/grades', 'TeacherRoomController@grades');// !!!!!  изменить на POST   !!!!
+Route::post('teacher/grades', 'TeacherRoomController@grades')->name('grades');
 Route::post('teacher/ajaxgrades', 'TeacherRoomController@ajaxgrades');
 
 Route::get('edit', 'AdminController@editPersonalData')->name('edit-get');

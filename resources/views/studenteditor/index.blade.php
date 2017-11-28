@@ -38,10 +38,6 @@
                                         </select>
                                     </td>
                                     <td>{{ $student->EnteringDate }}</td>
-                                    {{--<td>{!! Form::open(['method' => 'GET', 'route' => ['studenteditorEdit', $student->RecordBookId],]) !!}--}}
-                                    {{--{!! Form::submit('Изменить', ['class' => 'btn btn-primary','data-toggle'=>'confirmation', 'data-title'=>'Edit','data-content'=>'Edit student' ]) !!}--}}
-                                    {{--{!! Form::close() !!}--}}
-                                    {{--</td>--}}
                                     <td>
                                         {!! Form::open(['method' => 'DELETE', 'route' => ['studenteditorDel', $student->RecordBookId]]) !!}
                                         {!! Form::submit('Удалить', ['class' => 'btn btn-danger','data-toggle'=>'confirmation', 'data-title'=>'Delete','data-content'=>'Delete student' ]) !!}

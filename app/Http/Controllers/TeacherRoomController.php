@@ -25,17 +25,11 @@ class TeacherRoomController extends Controller
                 ->join('teaching', 'professors.ProfessorId', '=', 'teaching.ProfessorId')
                 ->join('schedule', 'teaching.TeachingId', '=', 'schedule.TeachingId')
                 ->where('professors.professorId', '=', $user->id)
-                ->select('professors.professorId', 'teaching.SubjectShortTitle', 'schedule.scheduleId', 'schedule.LessonType', 'schedule.lessonDate', 'schedule.lessonNumber')
+                ->select('professors.professorId', 'teaching.SubjectShortTitle', 'schedule.scheduleId', 'schedule.GroupShortTitle', 'schedule.LessonType', 'schedule.lessonDate', 'schedule.lessonNumber')
                 ->get();
 
             $teacher = Professor::where('ProfessorId', $user->id)->first();
             $view = view('teacher.index')->with(['teacher' => $teacher, 'professorSchedule' => $professorSchedule]);
-
-
-//            SELECT * FROM professors
-//            JOIN teaching ON professors.ProfessorId = teaching.ProfessorId
-//            JOIN schedule ON teaching.TeachingId = schedule.TeachingId
-//            WHERE professors.ProfessorId=6
         }
 
         return $view;
@@ -57,7 +51,8 @@ class TeacherRoomController extends Controller
 
     public function grades(Request $request)
     {
-        $scheduleid=9;
+        $scheduleid = $request->input('sid');
+
         $grades = Grade::all()->where('ScheduleId',$scheduleid);
         $group = Schedule::all()->where('ScheduleId', $scheduleid)->pluck('GroupShortTitle')->first();
         $date = Schedule::all()->where('ScheduleId', $scheduleid)->pluck('LessonDate')->first();
@@ -65,10 +60,6 @@ class TeacherRoomController extends Controller
         $schedule = Schedule::all()->where('ScheduleId', $scheduleid)->first();
 
         $professor=$schedule->group->professor;
-
-//        $isGrade = Grade::all()->where('ScheduleId',2)->where('RecordBookId',3)->first();
-//        dump($isGrade->GradeId);
-
 
         return view('teacher.grades')->with(['students'=> $students,'group'=>$group,'date'=>$date,'professor'=>$professor,'grades'=>$grades,'scheduleid'=>$scheduleid]);
     }
