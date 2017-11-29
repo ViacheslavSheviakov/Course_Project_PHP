@@ -3,17 +3,27 @@ namespace App\Http\Controllers;
 use App\Student;
 use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+
 class StudentPageController extends Controller
 {
     public function index()
     {
         $user = Auth::user();
-        if ($user == null) {
+        if ($user == null)
+        {
             return "You have to be logged in!";
         }
+
         $student = Student::all()->where('RecordBookId', Auth::user()->id)->first();
+        $grades_stats = DB::table('grades')
+            ->select(DB::raw('lesson_types.TypeShortTitle, avg(grades.Grade) as avgGrade'))
+            ->join('schedule', 'grades.ScheduleId', '=', 'schedule.ScheduleId')
+            ->join('lesson_types', 'schedule.LessonType', '=', 'lesson_types.TypeShortTitle')
+            ->where('grades.RecordBookId', '=', Auth::user()->id)
+            ->groupBy('lesson_types.TypeShortTitle')
+            ->get();
 
         $routine = [];
 
@@ -28,12 +38,43 @@ class StudentPageController extends Controller
             }
             $routine[$date][($lesson->LessonNumber - 1)] = $dataToInsert;
         }
-        return view('student.page')->with('data', [$student, $routine]);
+
+        return view('student.page')->with([
+            'student' => $student,
+            'routine' => $routine,
+            'grade_stats' =>$grades_stats
+        ]);
+    }
+
+    public function grades()
+    {
+        $grades_stats = DB::table('grades')
+            ->select(
+                'LessonDate',
+                'SubjectShortTitle',
+                'LessonType',
+                'Surname',
+                'Name',
+                'Patronymic',
+                'Grade')
+            ->join('schedule', 'grades.ScheduleId', '=', 'schedule.ScheduleId')
+            ->join('lesson_types', 'schedule.LessonType', '=', 'lesson_types.TypeShortTitle')
+            ->join('teaching', 'teaching.TeachingId', '=', 'schedule.TeachingId')
+            ->join('professors', 'teaching.ProfessorId', '=', 'professors.ProfessorId')
+            ->where('grades.RecordBookId', '=', Auth::user()->id)
+            ->get();
+
+        return view('student.grades')->with('grades', $grades_stats);
+    }
+
+    public function gradesProcess()
+    {
+        return redirect()->route('student.grades');
     }
     
-    public function report(Request $request)
+    public function report()
     {
-        $student = Student::all()->where('RecordBookId', $request->input('stuid'))->first();
+        $student = Student::all()->where('RecordBookId', Auth::user()->id)->first();
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
         $section = $phpWord->addSection();
         $text = $student->Surname . ' ' . $student->Name . ' ' . $student->Patronymic;

@@ -59,6 +59,10 @@
                                             Домой
                                         </a>
 
+                                        <a href="{{ route('edit-get') }}">
+                                            Настройки аккаунта
+                                        </a>
+
                                         <a href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
@@ -79,6 +83,7 @@
     </nav>
 
     @yield('content')
+
 </div>
 
 <!-- Scripts -->

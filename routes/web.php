@@ -19,7 +19,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('student', 'StudentPageController@index')->name('student');
+Route::get('student/grades', 'StudentPageController@grades')->name('student.grades');
+Route::post('student/grades', 'StudentPageController@gradesProcess')->name('student.grades.process');
 Route::post('/report', 'StudentPageController@report')->name('report');
+
 Route::get('/admin', 'AdminController@index')->name('admin');
 Route::get('/professor/edit', 'AdminController@editProfessor')->name('profedit');
 Route::get('/professor/add', 'AdminController@addProfessor')->name('profadd');
@@ -39,7 +42,6 @@ Route::post('teacher/ajaxgrades', 'TeacherRoomController@ajaxgrades');
 
 Route::get('edit', 'AdminController@editPersonalData')->name('edit-get');
 Route::post('edit', 'AdminController@editPersonalDataPost')->name('edit-post');
-
 
 Route::get('groups', 'GroupsEditorController@index');
 Route::get('groups{id}','GroupsEditorController@group');

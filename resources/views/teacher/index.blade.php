@@ -58,18 +58,18 @@
 
                     <div class="panel-body">
                         <div class="schedule">
-                            @foreach($professorSchedule as $lesson)
+                            @foreach($routine as $date => $lessons)
                                 <div class="day">
-                                    <h3>{{ $lesson->lessonDate }}</h3>
-                                    @for($i = 1; $i < 8; $i++)
+                                    <h3>{{ $date }}</h3>
+                                    @for($i = 0; $i < 8; $i++)
                                         <div class="lesson">
-                                            @if($lesson->lessonNumber==$i)
+                                            @if(isset($lessons[$i]))
                                                 {!! Form::open(['method' => 'POST', 'route' => 'grades']) !!}
-                                                {!! Form::hidden('sid',$lesson->scheduleId, array('class' => 'form-control')) !!}
-                                                <span><small>{{ $lesson->GroupShortTitle }}</small></span>
-                                                <span class="lesson-type"><small>{{ $lesson->LessonType }}</small></span>
+                                                {!! Form::hidden('sid',$lessons[$i][3], array('class' => 'form-control')) !!}
 
-                                                {!! Form::submit($lesson->SubjectShortTitle, ['class' => 'subject-title' ]) !!}
+                                                <span><small>{{ $lessons[$i][2] }}</small></span>
+                                                <span class="lesson-type">{{ $lessons[$i][0] }}</span>
+                                                {!! Form::submit($lessons[$i][1], ['class' => 'subject-title' ]) !!}
                                                 {!! Form::close() !!}
                                             @endif
                                         </div>

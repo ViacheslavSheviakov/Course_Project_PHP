@@ -25,11 +25,30 @@ class TeacherRoomController extends Controller
                 ->join('teaching', 'professors.ProfessorId', '=', 'teaching.ProfessorId')
                 ->join('schedule', 'teaching.TeachingId', '=', 'schedule.TeachingId')
                 ->where('professors.professorId', '=', $user->id)
-                ->select('professors.professorId', 'teaching.SubjectShortTitle', 'schedule.scheduleId', 'schedule.GroupShortTitle', 'schedule.LessonType', 'schedule.lessonDate', 'schedule.lessonNumber')
+                ->select('professors.professorId', 'teaching.SubjectShortTitle', 'schedule.ScheduleId', 'schedule.GroupShortTitle', 'schedule.LessonType', 'schedule.LessonDate', 'schedule.LessonNumber')
+                ->orderBy('lessonDate')
+                ->orderBy('lessonNumber')
                 ->get();
 
+            $routine = [];
+
+            foreach ($professorSchedule as $lesson) {
+                $date = (new \DateTime($lesson->LessonDate))->format('d.m.Y');
+                $dataToInsert = [
+                    $lesson->LessonType,
+                    $lesson->SubjectShortTitle,
+                    $lesson->GroupShortTitle,
+                    $lesson->ScheduleId
+                ];
+                if (!isset($routine[$date])) {
+                    $routine[$date] = [];
+                }
+                $routine[$date][($lesson->LessonNumber - 1)] = $dataToInsert;
+            }
+
+
             $teacher = Professor::where('ProfessorId', $user->id)->first();
-            $view = view('teacher.index')->with(['teacher' => $teacher, 'professorSchedule' => $professorSchedule]);
+            $view = view('teacher.index')->with(['teacher' => $teacher, 'routine' => $routine]);
         }
 
         return $view;

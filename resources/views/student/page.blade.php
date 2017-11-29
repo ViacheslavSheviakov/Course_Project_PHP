@@ -9,17 +9,12 @@
                     <div class="panel-heading">Студент</div>
 
                     <div class="panel-body">
-                        <h3>{{ $data[0]->Surname }} {{ $data[0]->Name }}</h3>
-                        <h4>Группа: {{ $data[0]->GroupShortTitle }}</h4>
-                    </div>
-                </div>
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">Персональные данные</div>
-
-                    <div class="panel-body">
-                        <p>Здесь Вы можете изменить свой E-mail и Пароль</p>
-                        <a href="edit" class="btn btn-primary btn-block">Изменить</a>
+                        <h3>
+                            {{ $student->Surname }}
+                            {{ $student->Name }}
+                            {{ $student->Patronymic }}
+                        </h3>
+                        <h4>Группа: {{ $student->GroupShortTitle }}</h4>
                     </div>
                 </div>
 
@@ -27,32 +22,45 @@
                     <div class="panel-heading">Оценки</div>
 
                     <div class="panel-body">
-                        <table class="table table-striped">
+                        <h3>Статистика</h3>
+                        <table class="table table-hover">
                             <thead>
                             <tr class="small">
-                                <th>Дата</th>
-                                <th>Дисциплина</th>
-                                <th>Преп.</th>
-                                <th>Оценка</th>
+                                <th>Тип занятия</th>
+                                <th>Ср. балл</th>
+                                <th>ECTS</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($data[0]->grades as $grade)
-                                <tr id="app">
-                                    <td>{{ $grade->schedule->LessonDate }}</td>
-                                    <td>{{ $grade->schedule->teaching->SubjectShortTitle }}</td>
+                            @foreach($grade_stats as $grade)
+                                <tr>
+                                    <td>{{ $grade->TypeShortTitle }}</td>
+                                    <td>{{ number_format($grade->avgGrade, 2, '.', ',') }}</td>
                                     <td>
-                                        {{ $grade->schedule->teaching->professor->Surname }}<br>
-                                        {{ $grade->schedule->teaching->professor->Name }}<br>
-                                        {{ $grade->schedule->teaching->professor->Patronymic }}
+                                        @if($grade->avgGrade >= 96)
+                                            <b>A</b>
+                                        @elseif($grade->avgGrade >= 75 && $grade->avgGrade <= 95)
+                                            <b>B</b>
+                                        @elseif($grade->avgGrade >= 66 && $grade->avgGrade <= 74)
+                                            <b>D</b>
+                                        @elseif($grade->avgGrade >= 60 && $grade->avgGrade <= 65)
+                                            <b>E</b>
+                                        @elseif($grade->avgGrade >= 35 && $grade->avgGrade <= 59)
+                                            <b>FX</b>
+                                        @elseif($grade->avgGrade >= 1 && $grade->avgGrade <= 34)
+                                            <b>F</b>
+                                        @endif
                                     </td>
-                                    <td>{{ $grade->Grade }}</td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
+
+                <a href="{{ route('student.grades') }}" class="btn btn-default btn-block">
+                    Электронный дневник
+                </a>
             </div>
 
             <div class="col-md-8">
@@ -61,7 +69,7 @@
 
                     <div class="panel-body">
                         <div class="schedule">
-                            @foreach($data[1] as $date => $lessons)
+                            @foreach($routine as $date => $lessons)
                                 <div class="day">
                                     <h3>{{ $date }}</h3>
                                     @for($i = 0; $i < 8; $i++)
@@ -75,18 +83,6 @@
                                 </div>
                             @endforeach
                         </div>
-                    </div>
-                </div>
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">Отчёт</div>
-
-                    <div class="panel-body">
-                        <form method="POST" action="report">
-                            {{ csrf_field() }}
-                            <input type="hidden" name="stuid" id="stuid" value="{{ $data[0]->RecordBookId }}">
-                            <input type="submit" class="btn btn-primary" value="Microsoft Word">
-                        </form>
                     </div>
                 </div>
             </div>
