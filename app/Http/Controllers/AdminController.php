@@ -11,6 +11,7 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Zend\Stdlib\Response;
 
@@ -149,5 +150,51 @@ class AdminController extends Controller
         $professor = Professor::where('ProfessorId', '=', $request->input('id'))->first();
 
         return view('admin.schedule-step-2')->with('professor', $professor);
+    }
+
+    public function process(Request $request)
+    {
+        $teachers = DB::table('professors');
+        $statement = 'LIKE';
+        $order = $request->input('order');
+
+        $tmp = [
+            'ProfessorId' => $request->input('id'),
+            'Surname' => $request->input('surname'),
+            'Name' => $request->input('name'),
+            'Patronymic' => $request->input('patronymic')
+        ];
+
+        if ($request->input('p-type') == 'search')
+        {
+            $statement = '=';
+        }
+
+        foreach ($tmp as $fieldInDB => $fieldInRequest)
+        {
+            if ($fieldInRequest != null)
+            {
+                $criteria = $fieldInRequest;
+
+                if ($statement == 'LIKE')
+                {
+                    $criteria = '%' . $criteria . '%';
+                }
+
+                $teachers->where($fieldInDB, $statement, $criteria);
+            }
+        }
+
+        if ($request->input('s-type') != null)
+        {
+            foreach ($request->input('s-type') as $criteria)
+            {
+                $teachers->orderBy($criteria, $order);
+            }
+        }
+
+        $teachers = $teachers->get();
+
+        return view('teacher.edit')->with('teachers', $teachers);
     }
 }

@@ -71,3 +71,11 @@ $(document).on('click', '#btngrade', function (e)
            // alert( msg )
         });
 });
+
+function ConfirmDelete(title) {
+    var x = confirm("Вы уверены, что хотите удалить " + title + "?");
+    if (x)
+        return true;
+    else
+        return false;
+}

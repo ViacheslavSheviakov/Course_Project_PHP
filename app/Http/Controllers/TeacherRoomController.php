@@ -46,6 +46,7 @@ class TeacherRoomController extends Controller
             ->update($teacher);
 
         $teacher = Professor::all()->first();
+
         return view('teacher.index')->with('teacher', $teacher);
     }
 
@@ -61,7 +62,14 @@ class TeacherRoomController extends Controller
 
         $professor=$schedule->group->professor;
 
-        return view('teacher.grades')->with(['students'=> $students,'group'=>$group,'date'=>$date,'professor'=>$professor,'grades'=>$grades,'scheduleid'=>$scheduleid]);
+        return view('teacher.grades')->with([
+            'students' => $students,
+            'group' => $group,
+            'date' => $date,
+            'professor' => $professor,
+            'grades' => $grades,
+            'scheduleid' => $scheduleid
+        ]);
     }
 
     public function ajaxgrades(Request $request)
@@ -82,5 +90,6 @@ class TeacherRoomController extends Controller
 
         }
     }
+
 }
 

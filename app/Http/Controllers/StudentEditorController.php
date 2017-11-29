@@ -87,6 +87,7 @@ class StudentEditorController extends Controller
         $students = DB::table('students');
         $groups = Group::all();
         $statement = 'LIKE';
+        $order = $request->input('order');
 
         $tmp = [
             'RecordBookId' => $request->input('record-book-id'),
@@ -128,12 +129,12 @@ class StudentEditorController extends Controller
         {
             foreach ($request->input('s-type') as $criteria)
             {
-                $students->orderBy($criteria);
+                $students->orderBy($criteria, $order);
             }
         }
 
         $students = $students->get();
 
-        return view('studenteditor.index')->with(['students'=> $students,'groups'=>$groups]);
+        return view('studenteditor.index')->with(['students'=> $students,'groups' => $groups]);
     }
 }

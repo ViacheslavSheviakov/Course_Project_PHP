@@ -40,7 +40,7 @@
                                     </td>
                                     <td>{{ $student->EnteringDate }}</td>
                                     <td>
-                                        {!! Form::open(['method' => 'DELETE', 'route' => ['studenteditorDel', $student->RecordBookId]]) !!}
+                                        {!! Form::open(['method' => 'DELETE', 'route' => ['studenteditorDel', $student->RecordBookId], 'onsubmit' => 'return ConfirmDelete("студента")']) !!}
                                         {!! Form::submit('Удалить', ['class' => 'btn btn-danger','data-toggle'=>'confirmation', 'data-title'=>'Delete','data-content'=>'Delete student' ]) !!}
                                         {!! Form::close() !!}
                                     </td>
@@ -117,6 +117,16 @@
                                 <br>
                                 {!! Form::checkbox('s-type[]', 'EnteringDate', false, ['id' => 's-type-4']); !!}
                                 {!! Form::label('s-type-4', 'Дата поступления'); !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Упорядочить по</td>
+                            <td>
+                                {!! Form::radio('order', 'ASC', true, ['id' => 'o-type-0']); !!}
+                                {!! Form::label('o-type-0', 'Возростанию'); !!}
+                                <br>
+                                {!! Form::radio('order', 'DESC', false, ['id' => 'o-type-1']); !!}
+                                {!! Form::label('o-type-1', 'Убыванию'); !!}
                             </td>
                         </tr>
                     </table>
