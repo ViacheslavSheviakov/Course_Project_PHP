@@ -9,7 +9,7 @@
 
                     <div class="panel-body">
 
-                        {{ Form::open(array('route' => 'studentEditorAdded')) }}
+                        {{ Form::open(['method' => 'GET', 'route' => 'studentEditorAdded']) }}
                         <table class="table table-striped">
                             <thead>
                             <tr>

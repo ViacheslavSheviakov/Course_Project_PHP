@@ -58,8 +58,7 @@ class StudentEditorController extends Controller
         }
         $students = Student::all();
 
-        return view('studenteditor.index')->with([
-            'students'=> $students,'groups'=>$groups]);
+        return redirect()->route('studentEditor');
     }
 
 
@@ -87,6 +86,43 @@ class StudentEditorController extends Controller
     {
         $students = DB::table('students');
         $groups = Group::all();
+        $statement = 'LIKE';
+
+        $tmp = [
+            'RecordBookId' => $request->input('record-book-id'),
+            'Surname' => $request->input('surname'),
+            'Name' => $request->input('name'),
+            'Patronymic' => $request->input('patronymic'),
+            'GroupShortTitle' => $request->input('group'),
+            'EnteringDate' => $request->input('arrival-date'),
+        ];
+
+        if ($request->input('p-type') == 'search')
+        {
+            $statement = '=';
+        }
+
+        foreach ($tmp as $fieldInDB => $fieldInRequest)
+        {
+            if ($fieldInRequest != null)
+            {
+                $criteria = $fieldInRequest;
+
+                if ($fieldInDB == 'EnteringDate')
+                {
+                    $date = date('Y-m-d', strtotime($criteria));
+                    $students->where($fieldInDB, '=', $date);
+                    continue;
+                }
+
+                if ($statement == 'LIKE')
+                {
+                    $criteria = '%' . $criteria . '%';
+                }
+
+                $students->where($fieldInDB, $statement, $criteria);
+            }
+        }
 
         if ($request->input('s-type') != null)
         {

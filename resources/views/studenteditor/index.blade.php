@@ -9,7 +9,7 @@
 
                     <div class="panel-body">
 
-                        <a class="btn btn-success" href="{{route('studentEditorAdd')}}" role="button">Добавить</a>
+                        <a class="btn btn-success" href="{{ route('studentEditorAdd') }}" role="button">Добавить</a>
                         <button class="btn btn-primary" data-toggle="modal" data-target="#settings">Настрйки поиска</button>
                         <table class="table table-striped">
                             <thead>
@@ -63,7 +63,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Настройки поиска и фильтрации</h4>
                 </div>
-                {!! Form::open(['method' => 'GET', 'route' => 'studenteditor.process']) !!}
+                {!! Form::open(['method' => 'POST', 'route' => 'studenteditor.process']) !!}
                 <div class="modal-body">
                     <table class="table table-condensed table-striped">
                         <tr>
@@ -96,7 +96,7 @@
                                 {!! Form::radio('p-type', 'search', false, ['id' => 'p-type-0']); !!}
                                 {!! Form::label('p-type-0', 'Поиск'); !!}
                                 <br>
-                                {!! Form::radio('p-type', 'filtering', false, ['id' => 'p-type-1']); !!}
+                                {!! Form::radio('p-type', 'filtering', true, ['id' => 'p-type-1']); !!}
                                 {!! Form::label('p-type-1', 'Фильтрация'); !!}
                             </td>
                         </tr>
