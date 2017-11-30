@@ -8,6 +8,45 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Конструктор рассписания</div>
                     <div class="panel-body">
+                        <h3>Сгенерировать</h3>
+                        {!! Form::open(['method' => 'POST', 'route' => ['schedule-generate']]) !!}
+                        {!! Form::hidden('id',$professor->ProfessorId, array('class' => 'form-control')) !!}
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Дисциплина</th>
+                                <th>Тип</th>
+                                <th>Группа</th>
+                                <th>Действие</th>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <select id="teach" name="teach" class="form-control">
+                                        @foreach($professor->teachings as $teaching)
+                                            <option value="{{$teaching->TeachingId}}">{{$teaching->SubjectShortTitle}}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <td>
+                                    <select id="type" name="type" class="form-control">
+                                        @foreach(\App\LessonType::all() as $type)
+                                            <option value="{{$type->TypeShortTitle}}">{{$type->TypeShortTitle}}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <td>
+                                    <select id="group" name="group" class="form-control">
+                                        @foreach(\App\Group::all() as $group)
+                                            <option value="{{$group->GroupShortTitle}}">{{$group->GroupShortTitle}}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <td>{!! Form::submit('Сгенерировать', ['class' => 'btn btn-primary']) !!}</td>
+                            </tr>
+                        </table>
+                        {!! Form::close() !!}
+
+                        <h3>Добавить</h3>
                         {!! Form::open(['method' => 'POST', 'route' => ['schedule-save']]) !!}
                         {!! Form::hidden('id',$professor->ProfessorId, array('class' => 'form-control')) !!}
                         <table class="table table-striped">

@@ -10,7 +10,7 @@
                     <div class="panel-body">
 
                         {!! Form::open(['method' => 'POST', 'route' => 'report']) !!}
-                        <div class="btn-group">
+                        <div class="btn-group-vertical">
                             <button class="btn btn-primary" data-toggle="modal" data-target="#settings"
                                     onclick="return false;">
                                 Настрйки поиска
@@ -30,7 +30,7 @@
                                 </tr>
                                 @foreach($grades as $grade)
                                     <tr>
-                                        <td>{{ $grade->LessonDate }}</td>
+                                        <td>{{ (new \DateTime($grade->LessonDate))->format('d.m.Y') }}</td>
                                         <td>{{ $grade->SubjectShortTitle }}</td>
                                         <td>{{ $grade->LessonType }}</td>
                                         <td>

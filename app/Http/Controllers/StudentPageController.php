@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Student;
 use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
@@ -11,8 +13,7 @@ class StudentPageController extends Controller
     public function index()
     {
         $user = Auth::user();
-        if ($user == null)
-        {
+        if ($user == null) {
             return "You have to be logged in!";
         }
 
@@ -42,13 +43,13 @@ class StudentPageController extends Controller
         return view('student.page')->with([
             'student' => $student,
             'routine' => $routine,
-            'grade_stats' =>$grades_stats
+            'grade_stats' => $grades_stats
         ]);
     }
 
     public function grades()
     {
-        $grades_stats = DB::table('grades')
+        $grades = DB::table('grades')
             ->select(
                 'LessonDate',
                 'SubjectShortTitle',
@@ -64,14 +65,82 @@ class StudentPageController extends Controller
             ->where('grades.RecordBookId', '=', Auth::user()->id)
             ->get();
 
-        return view('student.grades')->with('grades', $grades_stats);
+        return view('student.grades')->with('grades', $grades);
     }
 
-    public function gradesProcess()
+    public function gradesProcess(Request $request)
     {
-        return redirect()->route('student.grades');
+        $grades = DB::table('grades')
+            ->select(
+                'LessonDate',
+                'SubjectShortTitle',
+                'LessonType',
+                'Surname',
+                'Name',
+                'Patronymic',
+                'Grade')
+            ->join('schedule', 'grades.ScheduleId', '=', 'schedule.ScheduleId')
+            ->join('lesson_types', 'schedule.LessonType', '=', 'lesson_types.TypeShortTitle')
+            ->join('teaching', 'teaching.TeachingId', '=', 'schedule.TeachingId')
+            ->join('professors', 'teaching.ProfessorId', '=', 'professors.ProfessorId')
+            ->where('grades.RecordBookId', '=', Auth::user()->id);
+
+        $statement = 'LIKE';
+        $order = $request->input('order');
+
+        $date_from = $request->input('date-from');
+        $date_to = $request->input('date-to');
+
+        if ($date_from != null)
+        {
+            $grades->where('schedule.LessonDate', '>=', $date_from);
+        }
+
+        if ($date_to != null)
+        {
+            $grades->where('schedule.LessonDate', '<=', $date_to);
+        }
+
+        $tmp = [
+            'LessonType' => $request->input('lesson-type'),
+            'Grade' => $request->input('grade')
+        ];
+
+        if ($request->input('p-type') == 'search')
+        {
+            $statement = '=';
+            $grades->take(1);
+        }
+
+        foreach ($tmp as $fieldInDB => $fieldInRequest)
+        {
+            if ($fieldInRequest != null)
+            {
+                $criteria = $fieldInRequest;
+
+                if ($statement == 'LIKE')
+                {
+                    $criteria = '%' . $criteria . '%';
+                }
+
+                $grades->where($fieldInDB, $statement, $criteria);
+            }
+        }
+
+        if ($request->input('s-type') != null)
+        {
+            foreach ($request->input('s-type') as $criteria)
+            {
+                $grades->orderBy($criteria, $order);
+            }
+        }
+
+        $grades = $grades->get();
+
+
+        return view('student.grades')->with('grades', $grades);
     }
-    
+
     public function report()
     {
         $student = Student::all()->where('RecordBookId', Auth::user()->id)->first();

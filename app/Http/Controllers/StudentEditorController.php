@@ -101,6 +101,7 @@ class StudentEditorController extends Controller
         if ($request->input('p-type') == 'search')
         {
             $statement = '=';
+            $students->take(1);
         }
 
         foreach ($tmp as $fieldInDB => $fieldInRequest)

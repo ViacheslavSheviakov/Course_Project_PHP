@@ -34,6 +34,7 @@ Route::get('schedule/add/step-one', 'AdminController@addScheduleStepOne')->name(
 Route::get('schedule/add/step-two', 'AdminController@addScheduleStepTwo')->name('schedule-step-2');
 Route::delete('schedule/add/step-del{id}', 'AdminController@addScheduleStepTwoPost')->name('schedule-step-2-del');
 Route::post('schedule/add/save', 'AdminController@addScheduleStepSave')->name('schedule-save');
+Route::post('schedule/add/generate', 'AdminController@addScheduleStepGenerate')->name('schedule-generate');
 
 Route::get('teacher', 'TeacherRoomController@index')->name('teacher');
 Route::post('teacher', 'TeacherRoomController@changedata');
