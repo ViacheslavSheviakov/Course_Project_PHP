@@ -192,6 +192,10 @@ class AdminController extends Controller
                 $insertions = $credits;
                 break;
             }
+            case 'КОНС': {
+                $insertions = $credits;
+                break;
+            }
             default: {
                 $insertions = 1;
             }
@@ -223,8 +227,10 @@ class AdminController extends Controller
                 ->where('LessonNumber', '=', $num)
                 ->first();
 
-            if ($collisionP != null || $collisionS != null) {
-                if ($num < 5) {
+            if ($collisionP != null || $collisionS != null)
+            {
+                if ($num < 5)
+                {
                     $num++;
                     continue;
                 }
@@ -296,5 +302,17 @@ class AdminController extends Controller
         $teachers = $teachers->get();
 
         return view('teacher.edit')->with('teachers', $teachers);
+    }
+
+    public function clear(Request $request)
+    {
+        $collisionP = DB::table('schedule')
+            ->join('teaching', 'teaching.TeachingId', '=', 'schedule.TeachingId')
+            ->where('ProfessorId', '=', $request->input('id'))
+            ->delete();
+
+        $professor = Professor::where('ProfessorId', '=', $request->input('id'))->first();
+
+        return view('admin.schedule-step-2')->with('professor', $professor);
     }
 }

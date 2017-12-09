@@ -8,6 +8,11 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Конструктор рассписания</div>
                     <div class="panel-body">
+                        {!! Form::open(['method' => 'POST', 'route' => 'schedule.clear']) !!}
+                        {!! Form::hidden('id',$professor->ProfessorId, array('class' => 'form-control')) !!}
+                        {!! Form::submit('Очистить всё', ['class' => 'btn btn-danger']) !!}
+                        {!! Form::close() !!}
+                        <hr>
                         <h3>Сгенерировать</h3>
                         {!! Form::open(['method' => 'POST', 'route' => ['schedule-generate']]) !!}
                         {!! Form::hidden('id',$professor->ProfessorId, array('class' => 'form-control')) !!}

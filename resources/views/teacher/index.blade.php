@@ -15,6 +15,56 @@
                         </h3>
                     </div>
                 </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Статистика</div>
+
+                    <div class="panel-body">
+                        <h3>Занятия</h3>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-condensed">
+                                <tr>
+                                    <th>Группа</th>
+                                    <th>Предмет</th>
+                                    <th>Кол-во занятий</th>
+                                    <th>Тип</th>
+                                </tr>
+                                @foreach($stats as $stat)
+                                    <tr>
+                                        <td>{{ $stat->GroupShortTitle }}</td>
+                                        <td>{{ $stat->SubjectShortTitle }}</td>
+                                        <td>{{ $stat->lessons_count }}</td>
+                                        <td>{{ $stat->LessonType }}</td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                        </div>
+
+                        <h3>Оценки</h3>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-condensed">
+                                <tr>
+                                    <th>Группа</th>
+                                    <th>Предмет</th>
+                                    <th>Кол-во оценок</th>
+                                    <th>Тип</th>
+                                </tr>
+                                @foreach($grade_stats as $stat)
+                                    <tr>
+                                        <td>{{ $stat->GroupShortTitle }}</td>
+                                        <td>{{ $stat->SubjectShortTitle }}</td>
+                                        <td>{{ $stat->l_grade }}</td>
+                                        <td>{{ $stat->LessonType }}</td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                        </div>
+
+                        {!! Form::open(['method' => 'POST', 'route' => 'professor.report']) !!}
+                        {!! Form::submit('Скачать Отчёт', ['class' => 'btn btn-primary']) !!}
+                        {!! Form::close(); !!}
+                    </div>
+                </div>
             </div>
 
             <div class="col-md-8">
@@ -36,12 +86,7 @@
                         </table>
                     </div>
                 </div>
-            </div>
-        </div>
 
-
-        <div class="row">
-            <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">Рассписание</div>
 
@@ -69,6 +114,8 @@
                     </div>
                 </div>
             </div>
+
         </div>
+
     </div>
 @endsection
