@@ -9,7 +9,7 @@
 
                     <div class="panel-body">
 
-                        {{ Form::open(array('route' => 'studentEditorAdded')) }}
+                        {{ Form::open(['method' => 'GET', 'route' => 'studentEditorAdded']) }}
                         <table class="table table-striped">
                             <thead>
                             <tr>
@@ -44,7 +44,7 @@
                         <br>
                     </div>
                 </div>
-                <a class="btn btn-default" href="{{route('studentEditor')}}" role="button"> Список студентов</a>
+                <a class="btn btn-default" href="{{ route('studentEditor') }}" role="button"> Список студентов</a>
             </div>
         </div>
     </div>

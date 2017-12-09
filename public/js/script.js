@@ -1,6 +1,6 @@
 $(document).on('change', '#chgroup', function (e) {
 
-    var id = $( this ).parent().parent().find("#id").html();
+    var id = $(this).parent().parent().find("#id").html();
     //alert(id);
     //alert( this.value );
     $.ajaxSetup({
@@ -11,20 +11,20 @@ $(document).on('change', '#chgroup', function (e) {
     $.ajax({
         url: "studenteditor/ajaxgroup",
         cache: false,
-        data: {'RecordBookId': id, "val":  this.value}, // если нужно передать какие-то данные
+        data: {'RecordBookId': id, "val": this.value}, // если нужно передать какие-то данные
         type: "POST", // устанавливаем типа запроса POST
         success: function (data) {
             //alert('ok');
         }
     })
-        .done(function( msg ) {
+        .done(function (msg) {
             // alert( msg )
         });
 });
 
 $(document).on('change', '#chgroup', function (e) {
 
-    var id = $( this ).parent().parent().find("#id").html();
+    var id = $(this).parent().parent().find("#id").html();
     //alert(id);
     //alert( this.value );
     $.ajaxSetup({
@@ -35,23 +35,22 @@ $(document).on('change', '#chgroup', function (e) {
     $.ajax({
         url: "groups/ajaxgroup",
         cache: false,
-        data: {'RecordBookId': id, "val":  this.value}, // если нужно передать какие-то данные
+        data: {'RecordBookId': id, "val": this.value}, // если нужно передать какие-то данные
         type: "POST", // устанавливаем типа запроса POST
         success: function (data) {
             //alert('ok');
         }
     })
-        .done(function( msg ) {
-            //alert( msg )
+        .done(function (msg) {
+            alert(msg)
         });
 });
 
-$(document).on('click', '#btngrade', function (e)
-{
-    var RecordBookId = $( this ).parent().parent().find("#id").html();
-    var scheduleid = $( "#scheduleid" ).html();
-    var grade = $( this ).parent().parent().find("#grade")[0].value;
-      //alert(grade);
+$(document).on('click', '#btngrade', function (e) {
+    var RecordBookId = $(this).parent().parent().find("#id").html();
+    var scheduleid = $("#scheduleid").html();
+    var grade = $(this).parent().parent().find("#grade")[0].value;
+    //alert(grade);
 
     $.ajaxSetup({
         headers: {
@@ -61,13 +60,18 @@ $(document).on('click', '#btngrade', function (e)
     $.ajax({
         url: "ajaxgrades",
         cache: false,
-        data: {'RecordBookId': RecordBookId, "ScheduleId":  scheduleid, "Grade": grade}, // если нужно передать какие-то данные
+        data: {'RecordBookId': RecordBookId, "ScheduleId": scheduleid, "Grade": grade}, // если нужно передать какие-то данные
         type: "POST", // устанавливаем типа запроса POST
         success: function (data) {
-            //alert('ok');
+            alert('Оценка сохранена!');
         }
     })
-        .done(function( msg ) {
-           // alert( msg )
-        });
 });
+
+function ConfirmDelete(title) {
+    var x = confirm("Вы уверены, что хотите удалить " + title + "?");
+    if (x)
+        return true;
+    else
+        return false;
+}

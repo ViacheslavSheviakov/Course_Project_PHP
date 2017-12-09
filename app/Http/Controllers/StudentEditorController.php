@@ -8,6 +8,7 @@ use App\Group;
 use App\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class StudentEditorController extends Controller
@@ -57,8 +58,7 @@ class StudentEditorController extends Controller
         }
         $students = Student::all();
 
-        return view('studenteditor.index')->with([
-            'students'=> $students,'groups'=>$groups]);
+        return redirect()->route('studentEditor');
     }
 
 
@@ -78,7 +78,64 @@ class StudentEditorController extends Controller
             $groupShortTitle = $request->input('val');
             Student::where('RecordBookId', $recordBookId)->update(['GroupShortTitle' =>$groupShortTitle]);
 
-            return "Done";
+            return "Группа изменена";
         }
+    }
+
+    public function process(Request $request)
+    {
+        $students = DB::table('students');
+        $groups = Group::all();
+        $statement = 'LIKE';
+        $order = $request->input('order');
+
+        $tmp = [
+            'RecordBookId' => $request->input('record-book-id'),
+            'Surname' => $request->input('surname'),
+            'Name' => $request->input('name'),
+            'Patronymic' => $request->input('patronymic'),
+            'GroupShortTitle' => $request->input('group'),
+            'EnteringDate' => $request->input('arrival-date'),
+        ];
+
+        if ($request->input('p-type') == 'search')
+        {
+            $statement = '=';
+            $students->take(1);
+        }
+
+        foreach ($tmp as $fieldInDB => $fieldInRequest)
+        {
+            if ($fieldInRequest != null)
+            {
+                $criteria = $fieldInRequest;
+
+                if ($fieldInDB == 'EnteringDate')
+                {
+                    $date = date('Y-m-d', strtotime($criteria));
+                    $students->where($fieldInDB, '=', $date);
+                    continue;
+                }
+
+                if ($statement == 'LIKE')
+                {
+                    $criteria = '%' . $criteria . '%';
+                }
+
+                $students->where($fieldInDB, $statement, $criteria);
+            }
+        }
+
+        if ($request->input('s-type') != null)
+        {
+            foreach ($request->input('s-type') as $criteria)
+            {
+                $students->orderBy($criteria, $order);
+            }
+        }
+
+        $students = $students->get();
+
+        return view('studenteditor.index')->with(['students'=> $students,'groups' => $groups]);
     }
 }
