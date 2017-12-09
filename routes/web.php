@@ -48,6 +48,8 @@ Route::post('edit', 'AdminController@editPersonalDataPost')->name('edit-post');
 
 Route::get('groups', 'GroupsEditorController@index');
 Route::get('groups{id}','GroupsEditorController@group');
+Route::get('groups/index', 'GroupsEditorController@add')->name('add');
+Route::get('groups/add', 'GroupsEditorController@groupAdd')->name('addGroup');
 Route::post('groups/ajaxgroup','GroupsEditorController@ajaxgroup');
 
 Route::get('/home', 'HomeController@index')->name('home');

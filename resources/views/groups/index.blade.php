@@ -6,6 +6,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">Группы</div>
+                    <a class="btn btn-success" href="{{ route('add') }}" role="button">Добавить группу</a>
 
                     <div class="panel-body">
                         {{ Form::open(array('url' => 'groups')) }}

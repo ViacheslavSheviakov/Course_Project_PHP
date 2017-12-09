@@ -31,6 +31,23 @@ class GroupsEditorController extends Controller
         return view('groups.group')->with(['students'=> $students, 'groups'=>$groups]);
     }
 
+    public function add()
+    {
+        return view('groups.add');
+    }
+
+    public function groupAdd(Request $request)
+    {
+        $group = new Group();
+        $group->GroupShortTitle = $request->GroupShortTitle;
+        $group->GroupFullTitle = $request->GroupFullTitle;
+        Group::insert(
+            array('GroupShortTitle' => $group->GroupShortTitle,
+                'GroupFullTitle'  => $group->GroupFullTitle)
+        );
+        return "Done";
+    }
+
     public function ajaxgroup(Request $request)
     {
         if ($request->ajax()) {
