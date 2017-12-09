@@ -315,4 +315,46 @@ class AdminController extends Controller
 
         return view('admin.schedule-step-2')->with('professor', $professor);
     }
+
+    public function professorSubjects($id)
+    {
+        $professor = Professor::where('ProfessorId', '=', $id)->first();
+        $teachings = Teaching::where('ProfessorId', '=', $id)->get();
+        $subjects = Subject::whereNotIn('SubjectShortTitle', function($query) use ($id){
+                $query->select('SubjectShortTitle')
+                    ->from('teaching')
+                    ->where('ProfessorId', '=', $id);
+            })->get();
+
+        return view('admin.professor-subjects')->with([
+            'professor' => $professor,
+            'teachings' => $teachings,
+            'subjects' => $subjects
+        ]);
+    }
+
+    public function professorSubjectDelete($pId, $id)
+    {
+        Teaching::where('TeachingId', '=', $id)->delete();
+
+        return redirect()->route('professor.subjects', [$pId]);
+    }
+
+    public function professorSubjectAdd(Request $request)
+    {
+        $validate = Validator::make($request->all(), [
+            'professor-id' => 'required',
+            'new-subject' => 'required'
+        ]);
+
+        if (!$validate->fails())
+        {
+            $teaching = new Teaching();
+            $teaching->ProfessorId = $request->input('professor-id');
+            $teaching->SubjectShortTitle = $request->input('new-subject');
+            $teaching->save();
+        }
+
+        return redirect()->route('professor.subjects', [$request->input('professor-id')]);
+    }
 }

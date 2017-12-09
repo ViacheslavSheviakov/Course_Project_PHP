@@ -29,6 +29,9 @@ Route::get('/professor/add', 'AdminController@addProfessor')->name('profadd');
 Route::post('/professor/add', 'AdminController@addProfessorPost')->name('profaddp');
 Route::delete('/professor/del{id}', 'AdminController@delProfessor')->name('profdel');
 Route::post('/professor/edit', 'AdminController@process')->name('professor.room.process');
+Route::get('/professor/subjects/{id}', 'AdminController@professorSubjects')->name('professor.subjects');
+Route::delete('/professor/subjects/del/{pId}/{id}', 'AdminController@professorSubjectDelete')->name('professor.subject.delete');
+Route::post('/professor/subjects/add', 'AdminController@professorSubjectAdd')->name('professor.subject.add');
 
 Route::get('schedule/add/step-one', 'AdminController@addScheduleStepOne')->name('schedule-step-1');
 Route::get('schedule/add/step-two', 'AdminController@addScheduleStepTwo')->name('schedule-step-2');
