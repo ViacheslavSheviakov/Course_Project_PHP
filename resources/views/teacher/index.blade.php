@@ -18,18 +18,19 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
+                            <tr style="font-family: 'Britannic Bold'">
 
                                 {{ Form::hidden('id',$teacher->ProfessorId, array('class' => 'form-control')) }}
 
-                                <td>
+                                <td><b>
                                     {{ Form::text('Surname',$teacher->Surname, array('class' => 'form-control')) }}
+                                    </b>
                                 </td>
                                 <td>
-                                    {{ Form::text('Name',$teacher->Name, array('class' => 'form-control')) }}
+                                    {{ Form::label('Name',$teacher->Name, array('class' => 'form-control')) }}
                                 </td>
                                 <td>
-                                    {{ Form::text('Patronymic',$teacher->Patronymic, array('class' => 'form-control')) }}
+                                    {{ Form::label('Patronymic',$teacher->Patronymic, array('class' => 'form-control')) }}
                                 </td>
                                 <td>
                                     {{ Form::submit('Изменить', array('class' => 'btn btn-success btn-lg btn-block')) }}
@@ -39,6 +40,9 @@
                         </table>
                         {{ Form::close() }}
                     </div>
+                    {{--<button click="location.href='{{ url('schedule.blade.php') }}'">--}}
+                        {{--Check Stock</button>--}}
+                    <a href="{{ URL::previous() }}" class="btn btn-default">Back</a>
                 </div>
             </div>
         </div>
