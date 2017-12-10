@@ -11,8 +11,8 @@ namespace App\Http\Controllers;
 
 use App\Group;
 use App\Student;
+use App\Professor;
 use Illuminate\Http\Request;
-//use Illuminate\Support\Facades\DB;
 
 class GroupsEditorController extends Controller
 {
@@ -41,11 +41,21 @@ class GroupsEditorController extends Controller
         $group = new Group();
         $group->GroupShortTitle = $request->GroupShortTitle;
         $group->GroupFullTitle = $request->GroupFullTitle;
+        $group->ProfessorId = $request->ProfessorId;
         Group::insert(
             array('GroupShortTitle' => $group->GroupShortTitle,
-                'GroupFullTitle'  => $group->GroupFullTitle)
+                'GroupFullTitle'  => $group->GroupFullTitle,
+                'CuratorId' => $group->ProfessorId)
         );
-        return "Done";
+        return app('App\Http\Controllers\GroupsEditorController')->index();
+    }
+
+    public function addTeacherToGroup(Request $request)
+    {
+        $teachers = Professor::all();
+        $teachers->GroupShortTitle = $request->GroupShortTitle;
+        $teachers->GroupFullTitle = $request->GroupFullTitle;
+        return view('groups.addTeacherToGroup')->with('teachers', $teachers);
     }
 
     public function ajaxgroup(Request $request)
