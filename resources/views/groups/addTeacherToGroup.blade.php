@@ -8,7 +8,6 @@
                     <div class="panel-heading"></div>
 
                     <div class="panel-body">
-                        {{--{{ Form::open(['method' => 'POST', 'route' => 'addGroup'], array('url' => 'teachers')) }}--}}
                         <table class="table table-striped">
                             <thead>
                             <tr>

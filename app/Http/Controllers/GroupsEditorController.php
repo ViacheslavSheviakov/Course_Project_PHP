@@ -28,7 +28,12 @@ class GroupsEditorController extends Controller
         $students = Student::
             where('GroupShortTitle', $id)
             ->get();
-        return view('groups.group')->with(['students'=> $students, 'groups'=>$groups]);
+        if ($students->isEmpty()) {
+            return $view = view('groups.delete')->with( 'id', $id);
+        }
+        $view = view('groups.group')->with(['students'=> $students, 'groups'=>$groups]);
+
+        return $view;
     }
 
     public function add()
@@ -56,6 +61,12 @@ class GroupsEditorController extends Controller
         $teachers->GroupShortTitle = $request->GroupShortTitle;
         $teachers->GroupFullTitle = $request->GroupFullTitle;
         return view('groups.addTeacherToGroup')->with('teachers', $teachers);
+    }
+
+    public function deleteGroup($id)
+    {
+        Group::where('GroupShortTitle', '=', $id)->delete();
+        return  app('App\Http\Controllers\GroupsEditorController')->index();
     }
 
     public function ajaxgroup(Request $request)
