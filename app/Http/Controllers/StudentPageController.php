@@ -7,6 +7,7 @@ use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Mockery\Exception;
 
 class StudentPageController extends Controller
 {
@@ -179,7 +180,27 @@ class StudentPageController extends Controller
         $table->addCell(2500, $cellStyle)->addText('Преподаватель', $headFontStyle);
         $table->addCell(2500, $cellStyle)->addText('Оценка', $headFontStyle);
         foreach ($student->grades as $grade) {
-            $professor = $grade->schedule->teaching->professor;
+            $professor = $grade->schedule;
+
+            if ($professor == null)
+            {
+                continue;
+            }
+
+            $professor = $professor->teaching;
+
+            if ($professor == null)
+            {
+                continue;
+            }
+
+            $professor = $professor->professor;
+
+            if ($professor == null)
+            {
+                continue;
+            }
+
             $table->addRow();
             $table->addCell(2500, $cellStyle)->addText($grade->schedule->LessonDate, $fontStyle);
             $table->addCell(2500, $cellStyle)->addText($grade->schedule->teaching->SubjectShortTitle, $fontStyle);
