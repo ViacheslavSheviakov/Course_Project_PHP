@@ -11,8 +11,8 @@ namespace App\Http\Controllers;
 
 use App\Group;
 use App\Student;
+use App\Professor;
 use Illuminate\Http\Request;
-//use Illuminate\Support\Facades\DB;
 
 class GroupsEditorController extends Controller
 {
@@ -28,7 +28,45 @@ class GroupsEditorController extends Controller
         $students = Student::
             where('GroupShortTitle', $id)
             ->get();
-        return view('groups.group')->with(['students'=> $students, 'groups'=>$groups]);
+        if ($students->isEmpty()) {
+            return $view = view('groups.delete')->with( 'id', $id);
+        }
+        $view = view('groups.group')->with(['students'=> $students, 'groups'=>$groups]);
+
+        return $view;
+    }
+
+    public function add()
+    {
+        return view('groups.add');
+    }
+
+    public function groupAdd(Request $request)
+    {
+        $group = new Group();
+        $group->GroupShortTitle = $request->GroupShortTitle;
+        $group->GroupFullTitle = $request->GroupFullTitle;
+        $group->ProfessorId = $request->ProfessorId;
+        Group::insert(
+            array('GroupShortTitle' => $group->GroupShortTitle,
+                'GroupFullTitle'  => $group->GroupFullTitle,
+                'CuratorId' => $group->ProfessorId)
+        );
+        return app('App\Http\Controllers\GroupsEditorController')->index();
+    }
+
+    public function addTeacherToGroup(Request $request)
+    {
+        $teachers = Professor::all();
+        $teachers->GroupShortTitle = $request->GroupShortTitle;
+        $teachers->GroupFullTitle = $request->GroupFullTitle;
+        return view('groups.addTeacherToGroup')->with('teachers', $teachers);
+    }
+
+    public function deleteGroup($id)
+    {
+        Group::where('GroupShortTitle', '=', $id)->delete();
+        return  app('App\Http\Controllers\GroupsEditorController')->index();
     }
 
     public function ajaxgroup(Request $request)

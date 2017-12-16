@@ -51,10 +51,13 @@ Route::post('edit', 'AdminController@editPersonalDataPost')->name('edit-post');
 
 Route::get('groups', 'GroupsEditorController@index');
 Route::get('groups{id}','GroupsEditorController@group');
+Route::get('groups/index', 'GroupsEditorController@add')->name('add');
+Route::post("groups/addTeacher", 'GroupsEditorController@addTeacherToGroup')->name('addTeacher');
+Route::post('groups/add', 'GroupsEditorController@groupAdd')->name('addGroup');
+Route::delete('groups/delete{id}','GroupsEditorController@deleteGroup')->name('delgroup');
 Route::post('groups/ajaxgroup','GroupsEditorController@ajaxgroup');
 
 Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('subject', 'SubjectController@index')->name('subject');
 Route::get('subject/add', 'SubjectController@add')->name('subjectAdd');
 Route::post('subject', 'SubjectController@added')->name('subjectAdded');
