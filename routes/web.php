@@ -40,6 +40,7 @@ Route::post('schedule/clear', 'AdminController@clear')->name('schedule.clear');
 Route::get('teacher', 'TeacherRoomController@index')->name('teacher');
 Route::post('teacher', 'TeacherRoomController@changedata');
 Route::post('teacher/grades', 'TeacherRoomController@grades')->name('grades');
+Route::get('teacher/grades', function () {return abort(404);});
 Route::post('teacher/ajaxgrades', 'TeacherRoomController@ajaxgrades');
 Route::post('professor/report', 'TeacherRoomController@report')->name('professor.report');
 
