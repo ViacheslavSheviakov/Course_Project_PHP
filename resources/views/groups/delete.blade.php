@@ -6,14 +6,19 @@
             <div class="col-md-8 col-md-offset-2">
 
                 <div class="panel panel-default">
+                    <div class="panel-heading">Группa {{ $id }}</div>
+
+                    <div class="panel-body">
                         <div class="alert alert-danger">
-                            <h3>{{$id}}</h3>
-                            <br>
-                                <p>В этой группе нет студентов и вы можете ее удалить</p>
+                            <p>В этой группе нет студентов и Вы можете ее удалить</p>
                         </div>
-                    {!! Form::open(['method' => 'DELETE', 'route' => ['delgroup', $id], 'onsubmit' => 'return ConfirmDelete("группу")']) !!}
-                    {!! Form::submit('Удалить', ['class' => 'btn btn-danger','data-toggle'=>'confirmation', 'data-title'=>'Delete','data-content'=>'Delete group' ]) !!}
-                    {!! Form::close() !!}
+                    </div>
+
+                    <div class="panel-footer">
+                        {!! Form::open(['method' => 'DELETE', 'route' => ['delgroup', $id], 'onsubmit' => 'return ConfirmDelete("группу")']) !!}
+                        {!! Form::submit('Удалить', ['class' => 'btn btn-danger','data-toggle'=>'confirmation', 'data-title'=>'Delete','data-content'=>'Delete group' ]) !!}
+                        {!! Form::close() !!}
+                    </div>
                 </div>
             </div>
         </div>

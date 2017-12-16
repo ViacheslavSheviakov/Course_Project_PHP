@@ -20,20 +20,20 @@
                             @foreach($teachers as $teacher)
                             <tr>
                                 <td>
-                                    {{ Form::label('Surname',$teacher->Surname, array('class' => 'form-control')) }}
+                                    {{ $teacher->Surname }}
                                 </td>
                                 <td>
-                                    {{ Form::label('Name',$teacher->Name, array('class' => 'form-control')) }}
+                                    {{ $teacher->Name }}
                                 </td>
                                 <td>
-                                    {{ Form::label('Patronymic',$teacher->Patronymic, array('class' => 'form-control')) }}
+                                    {{ $teacher->Patronymic }}
                                 </td>
                                 <td>
                                     {{ Form::open(['method' => 'POST', 'route' => 'addGroup'], array('url' => 'teachers')) }}
                                     {{ Form::hidden('GroupShortTitle',$teacher->GroupShortTitle, array('class' => 'form-control')) }}
                                     {{ Form::hidden('GroupFullTitle',$teacher->GroupFullTitle, array('class' => 'form-control')) }}
                                     {{ Form::hidden('ProfessorId',$teacher->ProfessorId, array('class' => 'form-control')) }}
-                                    {{ Form::submit('Добавить в группу', array('class' => 'btn btn-success btn-lg btn-block')) }}
+                                    {{ Form::submit('Добавить в группу', array('class' => 'btn btn-success btn-block')) }}
                                     {{ Form::close() }}
                                 </td>
                             </tr>
