@@ -29,6 +29,9 @@ Route::get('/professor/add', 'AdminController@addProfessor')->name('profadd');
 Route::post('/professor/add', 'AdminController@addProfessorPost')->name('profaddp');
 Route::delete('/professor/del{id}', 'AdminController@delProfessor')->name('profdel');
 Route::post('/professor/edit', 'AdminController@process')->name('professor.room.process');
+Route::get('/professor/subjects/{id}', 'AdminController@professorSubjects')->name('professor.subjects');
+Route::delete('/professor/subjects/del/{pId}/{id}', 'AdminController@professorSubjectDelete')->name('professor.subject.delete');
+Route::post('/professor/subjects/add', 'AdminController@professorSubjectAdd')->name('professor.subject.add');
 
 Route::get('schedule/add/step-one', 'AdminController@addScheduleStepOne')->name('schedule-step-1');
 Route::get('schedule/add/step-two', 'AdminController@addScheduleStepTwo')->name('schedule-step-2');
@@ -49,10 +52,13 @@ Route::post('edit', 'AdminController@editPersonalDataPost')->name('edit-post');
 
 Route::get('groups', 'GroupsEditorController@index');
 Route::get('groups{id}','GroupsEditorController@group');
+Route::get('groups/index', 'GroupsEditorController@add')->name('add');
+Route::post("groups/addTeacher", 'GroupsEditorController@addTeacherToGroup')->name('addTeacher');
+Route::post('groups/add', 'GroupsEditorController@groupAdd')->name('addGroup');
+Route::delete('groups/delete{id}','GroupsEditorController@deleteGroup')->name('delgroup');
 Route::post('groups/ajaxgroup','GroupsEditorController@ajaxgroup');
 
 Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('subject', 'SubjectController@index')->name('subject');
 Route::get('subject/add', 'SubjectController@add')->name('subjectAdd');
 Route::post('subject', 'SubjectController@added')->name('subjectAdded');

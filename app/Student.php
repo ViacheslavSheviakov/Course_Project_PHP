@@ -12,6 +12,7 @@ class Student extends Model
     {
         return $this->hasOne('App\Group', 'GroupShortTitle', 'GroupShortTitle');
     }
+
     public function grades()
     {
         return $this->hasMany('App\Grade', 'RecordBookId', 'RecordBookId');

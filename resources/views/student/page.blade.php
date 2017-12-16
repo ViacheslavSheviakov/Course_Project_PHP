@@ -2,11 +2,11 @@
 
 @section('content')
     @role('Student')
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Студент</div>
+                    <div class="panel-heading"><span class="glyphicon glyphicon-user"></span> Студент</div>
 
                     <div class="panel-body">
                         <h3>
@@ -18,9 +18,64 @@
                     </div>
                 </div>
 
-                <div class="panel panel-default">
-                    <div class="panel-heading">Оценки</div>
+                @if ($student->group->professor != null)
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><span class="glyphicon glyphicon-user"></span> Куратор группы</div>
 
+                        <div class="panel-body">
+                            <h3>
+                                {{ $student->group->professor->Surname }}
+                                {{ $student->group->professor->Name }}
+                                {{ $student->group->professor->Patronymic }}
+                            </h3>
+                        </div>
+                    </div>
+                @endif
+
+            </div>
+
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><span class="glyphicon glyphicon-calendar"></span> Рассписание</div>
+
+                    <div class="panel-body">
+                        <div class="schedule">
+                            @foreach($routine as $date => $lessons)
+                                <div class="day">
+                                    <h3>{{ $date }}</h3>
+                                    @for($i = 0; $i < 8; $i++)
+                                        <div class="lesson">
+                                            @if(isset($lessons[$i]))
+                                                <span class="time">
+                                                @if($i == 0)
+                                                        <b>7:45</b>
+                                                    @elseif($i == 1)
+                                                        <b>9:30</b>
+                                                    @elseif($i == 2)
+                                                        <b>11:15</b>
+                                                    @elseif($i == 3)
+                                                        <b>13:10</b>
+                                                    @elseif($i == 4)
+                                                        <b>14:55</b>
+                                                    @elseif($i == 5)
+                                                        <b>16:30</b>
+                                                    @endif
+                                                </span>
+                                                <span class="lesson-type">{{ $lessons[$i][0] }}</span>
+                                                <span class="subject-title">{{ $lessons[$i][1] }}</span>
+                                            @endif
+                                        </div>
+                                    @endfor
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><span class="glyphicon glyphicon-book"></span> Оценки</div>
                     <div class="panel-body">
                         <h3>Статистика</h3>
                         <table class="table table-hover">
@@ -55,36 +110,12 @@
                             @endforeach
                             </tbody>
                         </table>
+                        <a href="{{ route('student.grades') }}" class="btn btn-primary btn-block">
+                            Электронный дневник
+                        </a>
                     </div>
                 </div>
 
-                <a href="{{ route('student.grades') }}" class="btn btn-default btn-block">
-                    Электронный дневник
-                </a>
-            </div>
-
-            <div class="col-md-8">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Рассписание</div>
-
-                    <div class="panel-body">
-                        <div class="schedule">
-                            @foreach($routine as $date => $lessons)
-                                <div class="day">
-                                    <h3>{{ $date }}</h3>
-                                    @for($i = 0; $i < 8; $i++)
-                                        <div class="lesson">
-                                            @if(isset($lessons[$i]))
-                                                <span class="lesson-type">{{ $lessons[$i][0] }}</span>
-                                                <span class="subject-title">{{ $lessons[$i][1] }}</span>
-                                            @endif
-                                        </div>
-                                    @endfor
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

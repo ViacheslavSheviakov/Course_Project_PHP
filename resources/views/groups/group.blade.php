@@ -4,17 +4,23 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
                     <div class="panel-heading">Группa {{$students[0]->GroupShortTitle}}</div>
-
                     <div class="panel-body">
                         {{ Form::open(array('url' => 'groups')) }}
                         <table class="table table-striped">
-                        <tr>
+                            <tr>
+                                <th>ID</th>
+                                <th>Дата поступления</th>
+                                <th>Фамилия</th>
+                                <th>Имя</th>
+                                <th>Отчество</th>
+                                <th>Перевести</th>
+                            </tr>
                         @foreach ($students as $student)
                         <tr>
-                            <td
-                                    id="id">{{ $student->RecordBookId }}
+                            <td id="id">
+                                {{ $student->RecordBookId }}
                             </td>
                             <td>
                             {{ Form::text('date',$student->EnteringDate, array('class' => 'form-control')) }}

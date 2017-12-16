@@ -8,21 +8,26 @@
                     <div class="panel-heading">Группы</div>
 
                     <div class="panel-body">
-                        {{ Form::open(array('url' => 'groups')) }}
+                        <a class="btn btn-success" href="{{ route('add') }}" role="button">Добавить группу</a>
 
-                        <table class="table table-striped">
-                            @foreach ($groups as $group)
-                                <tr>
-                                    <td>
-                                        <a class="button btn-default"
-                                           href="{{action('GroupsEditorController@group', ['id' => $group->GroupShortTitle])}}"
-                                           role="button">{{$group->GroupShortTitle}}
-                                            {{$group->GroupFullTitle}}
-                                        </a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </table>
+                        <hr>
+
+                        {{ Form::open(array('url' => 'groups')) }}
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                @foreach ($groups as $group)
+                                    <tr>
+                                        <td>
+                                            <a class="btn btn-default btn-block"
+                                               href="{{action('GroupsEditorController@group', ['id' => $group->GroupShortTitle])}}"
+                                               role="button">{{$group->GroupShortTitle}}
+                                                {{$group->GroupFullTitle}}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                        </div>
                         {{ Form::close() }}
                     </div>
                 </div>

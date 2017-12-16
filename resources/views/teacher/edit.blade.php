@@ -33,12 +33,11 @@
                                     <td>
                                         {{ $teacher->Patronymic }}
                                     </td>
-                                    <!--td>
-                                        {{ Form::open(array('url' => 'profedit')) }}
-                                        {{ Form::hidden('id',$teacher->ProfessorId, array('class' => 'form-control')) }}
-                                        {{ Form::submit('Изменить', array('class' => 'btn btn-primary btn-block')) }}
+                                    <td>
+                                        {{ Form::open(['method' => 'GET', 'route' => ['professor.subjects', $teacher->ProfessorId]]) }}
+                                        {{ Form::submit('Дисциплины', array('class' => 'btn btn-primary btn-block')) }}
                                         {{ Form::close() }}
-                                    </td-->
+                                    </td>
                                     <td>
                                         {{ Form::open(array('method' => 'DELETE', 'route' => ['profdel', $teacher->ProfessorId], 'onsubmit' => 'return ConfirmDelete("преподавателя")')) }}
                                         {{ Form::submit('Удалить', array('class' => 'btn btn-danger')) }}

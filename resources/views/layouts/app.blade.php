@@ -13,6 +13,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/student.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/slick.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/slick-theme.css') }}" rel="stylesheet">
 </head>
 <body>
 <div id="app">
@@ -56,17 +58,17 @@
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a href="{{ route('home') }}">
-                                            Домой
+                                            <span class="glyphicon glyphicon-home" aria-hidden="true"n></span> Домой
                                         </a>
 
                                         <a href="{{ route('edit-get') }}">
-                                            Настройки аккаунта
+                                            <span class="glyphicon glyphicon-cog"></span> Настройки аккаунта
                                         </a>
 
                                         <a href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
-                                            Выйти
+                                            <span class="glyphicon glyphicon-log-out"></span> Выйти
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST"
@@ -88,6 +90,42 @@
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/slick.min.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        $('.schedule').slick({
+            dots: true,
+            infinite: false,
+            speed: 300,
+            slidesToShow: 7,
+            slidesToScroll: 7,
+            responsive: [{
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 4,
+                    infinite: false,
+                    dots: true
+                }
+            }, {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3
+                }
+            }, {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                }
+            }
+                // You can unslick at a given breakpoint now by adding: settings: "unslick"
+                // instead of a settings object
+            ]
+        });
+    });
+</script>
 
 </body>
 </html>
