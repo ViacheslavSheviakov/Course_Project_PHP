@@ -53,7 +53,6 @@
                                                     $teaching->TeachingId],
                                                 'onsubmit' => 'return ConfirmDelete("дисциплину")'
                                             ]) !!}
-
                                             {!! Form::submit('Удалить', array('class' => 'btn btn-danger')) !!}
                                             {!! Form::close() !!}
                                         </td>
